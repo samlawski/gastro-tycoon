@@ -1,0 +1,24 @@
+{
+  "name": "gastro_tycoon",
+  "description": "Build a successful business with the right balance.",
+  "version": "0.0.1",
+  "author": "sam",
+  "scripts": {
+    "serve": "firebase serve --only functions",
+    "shell": "firebase experimental:functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "~4.2"
+  },
+  "dependencies": {
+    "actions-on-google": "2.0.0-alpha.4",
+    "firebase-admin": "^4.2.1",
+    "firebase-functions": "^0.5.7",
+    "dialogflow": "^0.1.0",
+    "dialogflow-fulfillment": "0.3.0-beta.3"
+  },
+  "private": true
+}
