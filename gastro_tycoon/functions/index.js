@@ -21,26 +21,7 @@ const {say, availableLocales} = require('./assets/speechAssets.js')
 const CARDS = require('./cards_loader.js')
 
 /* ** PRIVATE APPLICATION LOGIC ** */
-function gameNotStarted(conv){
-  return !conv.data.gameState ||
-         (conv.data.gameState && (
-           conv.data.gameState.progress <= 0 ||
-           conv.data.gameState.deck.length <= 0
-         ))
-}
-
-function initialGameState(initialDeck = []){
-  return {
-    stats: {
-      self: 0,
-      money: 0,
-      staff: 0,
-      customers: 0
-    },
-    progress: 0,
-    deck: initialDeck
-  }
-}
+const game = require('./game_utility.js')
 
 function deckWithCardsOnTop(deck, newCards){
   return [...newCards, ...deck]
@@ -127,7 +108,13 @@ app.middleware(conv => {
 
 app.intent('RestartGameHandler', (conv, params, confirmationGranted) => { // Only handled if a game is currently active.
   if(confirmationGranted){
-    conv.data.gameState = initialGameState(helper.shuffle(CARDS['assistants']))
+    conv.data.gameState = game.initialState(
+      helper.shuffle(
+        CARDS[
+          game.startAssistant(conv.user.storage.playedGamesCount)
+        ]
+      )
+    )
   }
 
   conv.ask(say('resumeConfirmation'))
@@ -145,7 +132,7 @@ app.intent('WelcomeIntent', conv => {
 })
 
 app.intent('HelpIntent', conv => {
-  if(gameNotStarted(conv)){
+  if(game.notStarted(conv.data.gameState)){
     conv.ask(`${say('instructions')} ${say('outroBeforeGame')}`)
     conv.ask(new Suggestions(say('suggestions')))
   }else{
@@ -156,7 +143,7 @@ app.intent('HelpIntent', conv => {
 })
 
 app.intent('Default Fallback Intent', conv => {
-  if(gameNotStarted(conv)){
+  if(game.notStarted(conv.data.gameState)){
     conv.ask(say('beforeGame'))
     conv.ask(say('suggestionsBeforeGame'))
   }else{
@@ -166,20 +153,15 @@ app.intent('Default Fallback Intent', conv => {
 })
 
 app.intent('StartNewGameIntent', conv => {
-  if(gameNotStarted(conv) || anyGameOverCriteriaMet(conv)){
+  if(game.notStarted(conv.data.gameState) || anyGameOverCriteriaMet(conv)){
     // Set initial game state
-    /* TODO:
-    if(conv.user.storage.playedGamesCount > 10){
-      initialGameState(helper.shuffle(CARDS['assistants__advanced']))
-    }else if(conv.user.storage.playedGamesCount > 5){
-      initialGameState(helper.shuffle(CARDS['assistants__intermediate']))
-    }else if(conv.user.storage.playedGamesCount > 0){
-      initialGameState(helper.shuffle(CARDS['assistants__beginner']))
-    }else{
-      initialGameState(helper.shuffle(CARDS['assistants__tutorial']))
-    }
-    */
-    conv.data.gameState = initialGameState(helper.shuffle(CARDS['assistants']))
+    conv.data.gameState = game.initialState(
+      helper.shuffle(
+        CARDS[
+          game.startAssistant(conv.user.storage.playedGamesCount)
+        ]
+      )
+    )
 
     conv.ask(say('startOptions'))
     conv.ask(conv.data.gameState.deck[0].text)
