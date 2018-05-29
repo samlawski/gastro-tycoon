@@ -21,15 +21,8 @@ const {say, availableLocales} = require('./assets/speechAssets.js')
 const CARDS = require('./cards_loader.js')
 
 /* ** PRIVATE APPLICATION LOGIC ** */
-const game = require('./game_utility.js')
-
-function deckWithCardsOnTop(deck, newCards){
-  return [...newCards, ...deck]
-}
-
-function deckWithCardsAtBottom(deck, newCards){
-  return [...deck, ...newCards]
-}
+const Game = require('./game_utility.js')
+const Deck = require('./deck_utility.js')
 
 function updatedGameStateStats(conv, usersChoiceResponse){
   return Object.keys(usersChoiceResponse.effect).reduce((accumulator, currentKey) => {
@@ -39,26 +32,6 @@ function updatedGameStateStats(conv, usersChoiceResponse){
   }, conv.data.gameState.stats)
 }
 
-function rebuildDeck(oldDeck, usersChoiceResponse){
-  let newDeck = oldDeck.slice()
-  // Remove cards from the deck
-  usersChoiceResponse.cardsToRemove.forEach(category => {
-    return newDeck = deckWithoutCategory(newDeck, category)
-  })
-  // Add new cards to the deck
-  usersChoiceResponse.cardsToAdd.forEach(category => {
-    return newDeck = usersChoiceResponse.addToTop ?
-      deckWithCardsOnTop(newDeck, helper.shuffle(CARDS[category])) :
-      deckWithCardsAtBottom(newDeck, helper.shuffle(CARDS[category]))
-  })
-  // Shuffle deck if response requires it
-  newDeck = usersChoiceResponse.shuffleDeck ? helper.shuffle(newDeck) : newDeck
-  return newDeck
-}
-
-function deckWithoutCategory(deck, category){
-  return deck.filter(card => card.category != category)
-}
 
 function statKeysTooLow(conv) {
   return Object.keys(conv.data.gameState.stats).filter(statKey => conv.data.gameState.stats[statKey] < 5)
@@ -108,10 +81,10 @@ app.middleware(conv => {
 
 app.intent('RestartGameHandler', (conv, params, confirmationGranted) => { // Only handled if a game is currently active.
   if(confirmationGranted){
-    conv.data.gameState = game.initialState(
+    conv.data.gameState = Game.initialState(
       helper.shuffle(
         CARDS[
-          game.startAssistant(conv.user.storage.playedGamesCount)
+          Game.startAssistant(conv.user.storage.playedGamesCount)
         ]
       )
     )
@@ -132,7 +105,7 @@ app.intent('WelcomeIntent', conv => {
 })
 
 app.intent('HelpIntent', conv => {
-  if(game.notStarted(conv.data.gameState)){
+  if(Game.notStarted(conv.data.gameState)){
     conv.ask(`${say('instructions')} ${say('outroBeforeGame')}`)
     conv.ask(new Suggestions(say('suggestions')))
   }else{
@@ -143,7 +116,7 @@ app.intent('HelpIntent', conv => {
 })
 
 app.intent('Default Fallback Intent', conv => {
-  if(game.notStarted(conv.data.gameState)){
+  if(Game.notStarted(conv.data.gameState)){
     conv.ask(say('beforeGame'))
     conv.ask(say('suggestionsBeforeGame'))
   }else{
@@ -153,12 +126,12 @@ app.intent('Default Fallback Intent', conv => {
 })
 
 app.intent('StartNewGameIntent', conv => {
-  if(game.notStarted(conv.data.gameState) || anyGameOverCriteriaMet(conv)){
+  if(Game.notStarted(conv.data.gameState) || anyGameOverCriteriaMet(conv)){
     // Set initial game state
-    conv.data.gameState = game.initialState(
+    conv.data.gameState = Game.initialState(
       helper.shuffle(
         CARDS[
-          game.startAssistant(conv.user.storage.playedGamesCount)
+          Game.startAssistant(conv.user.storage.playedGamesCount)
         ]
       )
     )
@@ -182,7 +155,7 @@ app.intent('ResponseIntent', (conv, params) => {
   conv.data.gameState.stats = updatedGameStateStats(conv, usersChoiceResponse)
   console.log('Game Stats', conv.data.gameState.stats, conv.data.gameState.progress) // TODO remove after debugging
   // Rebuild the deck:
-  conv.data.gameState.deck = rebuildDeck(conv.data.gameState.deck, usersChoiceResponse)
+  conv.data.gameState.deck = Deck.rebuild(conv.data.gameState.deck, usersChoiceResponse)
 
   // Stop the game if any game-over criteria is true.
   if(anyGameOverCriteriaMet(conv, usersChoiceResponse)){
@@ -210,7 +183,7 @@ app.intent('CheatIntent', (conv, params) => {
   }else if(cheat == 'godmode'){
     conv.data.godmode = true
   }else if(cheat == 'pirate'){
-    conv.data.gameState.deck = deckWithCardsOnTop(
+    conv.data.gameState.deck = Deck.withCardsOnTop(
       conv.data.gameState.deck,
       helper.shuffle(CARDS['vacation'])
     )
