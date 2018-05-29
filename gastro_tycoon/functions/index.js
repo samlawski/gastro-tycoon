@@ -18,7 +18,7 @@ const app = dialogflow({debug: true}) // doc: toggle logs for debugging - TODO
 /* ** ASSETS & LIBRARIES  ** */
 const helper = require('./helper.js')
 const {say, availableLocales} = require('./assets/speechAssets.js')
-const CARDS = require('./assets/cards.js')
+const CARDS = require('./cards_loader.js')
 
 /* ** PRIVATE APPLICATION LOGIC ** */
 function gameNotStarted(conv){
@@ -168,6 +168,17 @@ app.intent('Default Fallback Intent', conv => {
 app.intent('StartNewGameIntent', conv => {
   if(gameNotStarted(conv) || anyGameOverCriteriaMet(conv)){
     // Set initial game state
+    /* TODO:
+    if(conv.user.storage.playedGamesCount > 10){
+      initialGameState(helper.shuffle(CARDS['assistants__advanced']))
+    }else if(conv.user.storage.playedGamesCount > 5){
+      initialGameState(helper.shuffle(CARDS['assistants__intermediate']))
+    }else if(conv.user.storage.playedGamesCount > 0){
+      initialGameState(helper.shuffle(CARDS['assistants__beginner']))
+    }else{
+      initialGameState(helper.shuffle(CARDS['assistants__tutorial']))
+    }
+    */
     conv.data.gameState = initialGameState(helper.shuffle(CARDS['assistants']))
 
     conv.ask(say('startOptions'))

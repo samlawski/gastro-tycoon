@@ -1,0 +1,59 @@
+{
+  "tutorial": [
+    {
+      "text": "Let's get to the first order of business. You have to decide on a location for your new business. I found this run down place in the outskirts of the city. Not pretty. But everyone starts small. Should we move in?",
+      "responses": [
+        {
+          "text": "Too bad. You don't have enough money to afford anything else. So we're taking this place anyway.",
+          "effect": { "self": -1, "money": -1, "staff": 0, "customers": 0 }
+        },
+        {
+          "text": "Perfect. It'll need some work, but I'm sure it'll be fun!",
+          "effect": { "self": 1, "money": -1, "staff": 0, "customers": 0 }
+        }
+      ]
+    },
+    {
+      "text": "Now, let's decide on the kind of business we want to run. For someone just starting out, I recommend to open a café. Do you like coffee?",
+      "responses": [
+        {
+          "text": "Really? You don't like coffee? I guess we have to hire someone who does. Otherwise you'll most likely serve horrible coffee.",
+          "effect": { "self": 0, "money": 0, "staff": 0, "customers": -1 }
+        },
+        {
+          "text": "Me too!",
+          "effect": { "self": 1, "money": 0, "staff": 0, "customers": 0 }
+        }
+      ]
+    },
+    {
+      "text": "Here is a barister with absolutely no experience. I think with the amount of money we have we can't be picky. Should we hire him?",
+      "responses": [
+        {
+          "text": "I guess you'll try making coffee yourself then. Not sure if that's a good idea.",
+          "effect": { "self": -1, "money": 0, "staff": -1, "customers": 0 }
+        },
+        {
+          "text": "Our first employee. Let's be nice.",
+          "effect": { "self": 0, "money": -1, "staff": 1, "customers": 0 },
+          "cardsToAdd": {"events__staff": {"top": false}}
+        }
+      ]
+    },
+    {
+      "text": "I think we are ready for opening, now. What do you think?",
+      "responses": [
+        {
+          "text": "No? Hm. Not sure what you're waiting for then.",
+          "effect": { "self": -1, "money": -2, "staff": -1, "customers": -1 },
+          "cardsToAdd": {"beginnings__random": {}, "beginnings__staff": {}, "beginnings__menu": {}}
+        },
+        {
+          "text": "How exciting!",
+          "effect": { "self": 1, "money": 0, "staff": 0, "customers": 0 },
+          "cardsToAdd": {"beginnings__first_customer": {}}
+        }
+      ]
+    }
+  ]
+}

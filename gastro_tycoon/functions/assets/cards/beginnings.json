@@ -1,0 +1,97 @@
+{
+  "locations": [
+    {
+      "text": "How about this beautiful small shop in a slightly shady neighbourhood?",
+      "responses": [
+        {
+          "text": "Not here then.",
+          "effect": { "self": -1, "money": -1, "staff": -1, "customers": -1 }
+        },
+        {
+          "text": "Not much. But a great first shop.",
+          "effect": { "self": 2, "money": -2, "staff": 0, "customers": 0 },
+          "cardsToAdd": {"beginnings__menu": {}},
+          "cardsToRemove": {"beginnings__locations": {}}
+        }
+      ]
+    },
+    {
+      "text": "How this old store in a neighbourhood?",
+      "responses": [
+        {
+          "text": "You know you gotta decide for one place or another.",
+          "effect": { "self": 0, "money": -1, "staff": 0, "customers": 0 }
+        },
+        {
+          "text": "Nice and quiet. This will certainly be a little more low key.",
+          "effect": { "self": 2, "money": -2, "staff": 0, "customers": 0 },
+          "cardsToAdd": {"beginnings__menu": {}},
+          "cardsToRemove": {"beginnings__locations": {}}
+        }
+      ]
+    },
+    {
+      "text": "I found a cute little shack right next to a lake. This could be a beautiful place to open a  small restaurant. Do you like it?",
+      "responses": [
+        {
+          "text": "Too bad. It really looks like a place of peace. Just keep in mind we will run out of money eventually.",
+          "effect": { "self": 0, "money": -1, "staff": 0, "customers": 0 }
+        },
+        {
+          "text": "Such a beautiful place! I am looking forward to working here!",
+          "effect": { "self": 3, "money": -2, "staff": 1, "customers": 0 },
+          "cardsToAdd": {"beginnings__menu": {}},
+          "cardsToRemove": {"beginnings__locations": {}}
+        }
+      ]
+    },
+    {
+      "text": "How about opening your business right in the city center?",
+      "responses": [
+        {
+          "text": "I guess you don't like so much the busy life style.",
+          "effect": { "self": 0, "money": -1, "staff": 0, "customers": 0 }
+        },
+        {
+          "text": "City center it is! This is where life is happening.",
+          "effect": { "self": -2, "money": -2, "staff": 0, "customers": 2 },
+          "cardsToAdd": {"beginnings__menu": {}, "events__city": {}},
+          "cardsToRemove": {"beginnings__locations": {}}
+        }
+      ]
+    }
+  ],
+  "menu": [
+    {
+      "text": "Let's start by adding some bananas to our stock pile. What do you think?",
+      "responses": [
+        {
+          "text": "Oh... That's awkward... Nevermind then.",
+          "effect": { "self": 0, "money": 0, "staff": 0, "customers": 0 }
+        },
+        {
+          "text": "Fantastic! I really don't know what I would have done if you had said no. I already ordered a ton.",
+          "effect": { "self": 0, "money": 0, "staff": 0, "customers": 0 }
+        }
+      ]
+    }
+  ],
+  "staff": [],
+  "first_customer": [],
+  "random": [
+    {
+      "text": "Oh I think I just saw a rat. Should we hire someone to check this place and kill all rats?",
+      "responses": [
+        {
+          "text": "Risky. Who knows if there are more. But your choice.",
+          "effect": { "self": -1, "money": 0, "staff": 0, "customers": 0 },
+          "cardsToAdd": {"events__rats": {}}
+        },
+        {
+          "text": "I think that's wise. We don't want them to be seen by any customers later on.",
+          "effect": { "self": 1, "money": -1, "staff": 0, "customers": 0 }
+        }
+      ]
+    }
+  ]
+}

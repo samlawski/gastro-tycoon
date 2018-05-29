@@ -8,17 +8,16 @@
     "shell": "firebase experimental:functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
-  },
-  "engines": {
-    "node": "~4.2"
+    "logs": "firebase functions:log",
+    "test": "ava \"**/*.test.js\""
   },
   "dependencies": {
     "actions-on-google": "2.0.0-alpha.4",
-    "firebase-admin": "^4.2.1",
-    "firebase-functions": "^0.5.7",
+    "ava": "^0.25.0",
     "dialogflow": "^0.1.0",
-    "dialogflow-fulfillment": "0.3.0-beta.3"
+    "dialogflow-fulfillment": "0.3.0-beta.3",
+    "firebase-admin": "^4.2.1",
+    "firebase-functions": "^0.5.7"
   },
   "private": true
 }
