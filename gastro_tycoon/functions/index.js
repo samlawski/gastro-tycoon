@@ -17,15 +17,15 @@ const app = dialogflow({debug: true}) // doc: toggle logs for debugging - TODO
 
 /* ** ASSETS & LIBRARIES  ** */
 const helper = require('./helper.js')
-const {say, availableLocales} = require('./assets/speechAssets.js')
 const CARDS = require('./cards_loader.js')
+const {say, availableLocales} = require('./say_utility.js')
 
 /* ** PRIVATE APPLICATION LOGIC ** */
 const Game = require('./game_utility.js')
 const Deck = require('./deck_utility.js')
 
 function statusUpdate(statsLow) {
-  return statsLow.map(key => say('low', {}, 'statusWarnings')[key]).join(' ')
+  return statsLow.map(key => helper.randomOf(say('low', {}, 'statusWarnings')[key])).join(' ')
 }
 
 function anyGameOverCriteriaMet(conv, usersChoiceResponse = {}){
@@ -81,10 +81,10 @@ app.intent('HelpIntent', conv => {
 
 app.intent('Default Fallback Intent', conv => {
   if(Game.notStarted(conv.data.gameState)){
-    conv.ask(say('beforeGame'))
+    conv.ask(helper.randomOf(say('beforeGame')))
     conv.ask(say('suggestionsBeforeGame'))
   }else{
-    conv.ask(say('inGame'))
+    conv.ask(helper.randomOf(say('inGame')))
     conv.ask(say('suggestionsInGame'))
   }
 })
@@ -100,7 +100,7 @@ app.intent('StartNewGameIntent', conv => {
       )
     )
 
-    conv.ask(say('startOptions'))
+    conv.ask(helper.randomOf(say('startOptions')))
     conv.ask(conv.data.gameState.deck[0].text)
     conv.ask(new Suggestions(say('suggestions')))
   }else{
