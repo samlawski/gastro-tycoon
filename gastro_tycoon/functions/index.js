@@ -62,8 +62,9 @@ app.intent('RestartGameHandler', (conv, params, confirmationGranted) => { // Onl
 /* ** USER INTENT ACTIONS ** */
 
 app.intent('WelcomeIntent', conv => {
+  let scoreDays = `${conv.user.storage.highScore} day${conv.user.storage.highScore > 1 ? 's' : ''}`
   (conv.user.storage.highScore > 0) ?
-    conv.ask(say('welcomeBack', {score: conv.user.storage.highScore})) :
+    conv.ask(say('welcomeBack', {scoreDays: scoreDays})) :
     conv.ask(say('welcome'))
   conv.ask(new Suggestions(say('suggestions')))
 })
@@ -123,8 +124,9 @@ app.intent('ResponseIntent', (conv, params) => {
 
   // Stop the game if any game-over criteria is true.
   if(anyGameOverCriteriaMet(conv, usersChoiceResponse)){
+    let scoreDays = `${conv.user.storage.highScore} day${conv.user.storage.highScore > 1 ? 's' : ''}`
     // Game over response
-    conv.ask(`${say('gameOver')[Game.gameOverCriteria(conv.data.gameState, usersChoiceResponse)]} ${say('gameOver__score', {score: conv.data.gameState.progress})}`)
+    conv.ask(`${say('gameOver')[Game.gameOverCriteria(conv.data.gameState, usersChoiceResponse)]} ${say('gameOver__score', {scoreDays: scoreDays})}`)
     conv.ask(say('gameOver__message'))
     conv.ask(new Suggestions(say('gameOverSuggestions')))
   }else{
