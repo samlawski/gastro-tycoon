@@ -1,3 +1,7 @@
+const Deck = require('./deck_utility.js')
+const CARDS = require('./cards_loader.js')
+const helper = require('./helper.js')
+
 module.exports = {
 
   notStarted: gameState => {
@@ -61,6 +65,20 @@ module.exports = {
     }else{
       return false
     }
+  },
+
+  applyCheat: (gameState, cheat) => {
+    if(cheat == 'robinhood'){
+      gameState.stats.money += 10
+    }else if(cheat == 'godmode'){
+      gameState.godmode = true
+    }else if(cheat == 'pirate'){
+      gameState.deck = Deck.withCardsOnTop(
+        gameState.deck,
+        helper.shuffle(CARDS['stories__vacation'])
+      )
+    }
+    return gameState
   }
 
 }

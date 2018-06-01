@@ -119,3 +119,52 @@ test('gameOverCriteria not met with godmode cheat', t => {
     game.gameOverCriteria(gameState, {})
   )
 })
+
+// .applyCheat
+
+test('applyCheat raises money for robinhood', t => {
+  let gameState = {stats: {money: 1}}
+  t.deepEqual(
+    game.applyCheat(gameState, 'robinhood'),
+    {stats: {money: 11}}
+  )
+})
+test('applyCheat set godmode true', t => {
+  let gameState = {stats: {money: 1}}
+  t.deepEqual(
+    game.applyCheat(gameState, 'godmode'),
+    {stats: {money: 1}, godmode: true}
+  )
+})
+test('applyCheat add vacation cards to top for pirate', t => {
+  let gameState = {
+    deck: [
+      {
+        "category": "assistants__tutorial",
+        "text": "Good day! My name is Smam and I can see it's your first time you're trying to open a gastronomy business. Beginning anything can be hard. I'm here to make your work easier. But you are the one making decisions. Is this your first time playing this game?",
+        "responses": [
+          {
+            "text": "Oh excellent. In that let's dive right in and pick a location to open your business!",
+            "effect": { "self": 10, "money": 10, "staff": 10, "customers": 10 },
+            "cardsToAdd": {"beginnings__locations": {"top": true, "shuffle": true}},
+            "cardsToRemove": {"assistants__tutorial": {"top": true, "shuffle": true}},
+            "shuffle": true, "gameOver": false
+          },
+          {
+            "text": "No worries. That's what I'm here for. I will be your personal assistant and present to you everything you need to decide on and all you gotta do is to tell me whether you agree or not. I will take care of the rest.",
+            "effect": { "self": 12, "money": 12, "staff": 12, "customers": 12 },
+            "cardsToAdd": {"stories__tutorial__01": {"top": true, "shuffle": false}},
+            "cardsToRemove": {"assistants__tutorial": {"top": true, "shuffle": true}},
+            "shuffle": true, "gameOver": false
+          }
+        ]
+      }
+    ]
+  }
+  let newState = game.applyCheat(gameState, 'pirate')
+
+  t.deepEqual(
+    newState.deck[0].category,
+    'stories__vacation'
+  )
+})

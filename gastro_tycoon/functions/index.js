@@ -140,18 +140,8 @@ app.intent('ResponseIntent', (conv, params) => {
 })
 
 app.intent('CheatIntent', (conv, params) => {
-  var cheat = params['cheatCode']
-
-  if(cheat == 'robinhood'){
-    conv.data.gameState.stats.money += 10
-  }else if(cheat == 'godmode'){
-    conv.data.godmode = true
-  }else if(cheat == 'pirate'){
-    conv.data.gameState.deck = Deck.withCardsOnTop(
-      conv.data.gameState.deck,
-      helper.shuffle(CARDS['vacation'])
-    )
-  }
+  let cheat = params['cheatCode']
+  conv.data.gameState = Game.applyCheat(cong.data.gameState, cheat)
 
   conv.ask(new SimpleResponse({
     speech: `

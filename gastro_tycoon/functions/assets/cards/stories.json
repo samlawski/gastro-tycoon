@@ -55,5 +55,52 @@
         }
       ]
     }
+  ],
+  "vacation": [
+    {
+      "text": "Seems like you're enjoying yourself with some cocktails in the warm sun of the Carribean. Do you want to go back yet?",
+      "responses": [
+        {
+          "text": "Yea let's get you some more of those cocktails.",
+          "effect": { "self": 2, "money": -1, "staff": 0, "customers": 0 },
+          "cardsToAdd": {"stories__vacation": {}}, "shuffle": false
+        },
+        {
+          "text": "Duty calls!",
+          "effect": { "self": -1, "money": 0, "staff": 0, "customers": 0 },
+          "cardsToRemove": {"stories__vacation": {}}
+        }
+      ]
+    },
+    {
+      "text": "Another wonderful day on the beach. Maybe you want to think about coming home. What do you think?",
+      "responses": [
+        {
+          "text": "Can't get enough of that beach?",
+          "effect": { "self": 2, "money": -1, "staff": 0, "customers": 0 },
+          "cardsToAdd": {"stories__vacation": {}}, "shuffle": false
+        },
+        {
+          "text": "Alright. Next stop: Home. Welcome back!",
+          "effect": { "self": -1, "money": 0, "staff": 0, "customers": 0 },
+          "cardsToRemove": {"stories__vacation": {}}
+        }
+      ]
+    },
+    {
+      "text": "You seem very well rested out here in the sun. Is it time to go back to work yet?",
+      "responses": [
+        {
+          "text": "Who am I kidding. Of course not!",
+          "effect": { "self": 2, "money": -1, "staff": 0, "customers": 0 },
+          "cardsToAdd": {"stories__vacation": {}}, "shuffle": false
+        },
+        {
+          "text": "Time to become reasonable.",
+          "effect": { "self": -1, "money": 0, "staff": 0, "customers": 0 },
+          "cardsToRemove": {"stories__vacation": {}}
+        }
+      ]
+    }
   ]
 }

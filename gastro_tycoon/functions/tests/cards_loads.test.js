@@ -9,7 +9,7 @@ test('has all card types as keys prefixed with file name', t => {
       'beginnings__locations', 'beginnings__menu', 'beginnings__staff', 'beginnings__first_customer', 'beginnings__random',
       'events__city', 'events__random', 'events__rats', 'events__staff',
       'lateStories__mafia',
-      'stories__tutorial'
+      'stories__tutorial', 'stories__vacation'
     ]
   )
 })
