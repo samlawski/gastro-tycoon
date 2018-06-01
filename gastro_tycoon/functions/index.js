@@ -24,14 +24,6 @@ const CARDS = require('./cards_loader.js')
 const Game = require('./game_utility.js')
 const Deck = require('./deck_utility.js')
 
-function updatedGameStateStats(conv, usersChoiceResponse){
-  return Object.keys(usersChoiceResponse.effect).reduce((accumulator, currentKey) => {
-    var statusValue = usersChoiceResponse.effect[currentKey]
-    accumulator[currentKey] += statusValue
-    return accumulator
-  }, conv.data.gameState.stats)
-}
-
 
 function statKeysTooLow(conv) {
   return Object.keys(conv.data.gameState.stats).filter(statKey => conv.data.gameState.stats[statKey] < 5)
@@ -83,9 +75,7 @@ app.intent('RestartGameHandler', (conv, params, confirmationGranted) => { // Onl
   if(confirmationGranted){
     conv.data.gameState = Game.initialState(
       helper.shuffle(
-        CARDS[
-          Game.startAssistant(conv.user.storage.playedGamesCount)
-        ]
+        CARDS[Game.startAssistant(conv.user.storage.playedGamesCount)]
       )
     )
   }
@@ -152,7 +142,7 @@ app.intent('ResponseIntent', (conv, params) => {
   // Write latest highscore to user storage
   conv.user.storage.highScore = conv.data.gameState.progress
   // Update gameState status
-  conv.data.gameState.stats = updatedGameStateStats(conv, usersChoiceResponse)
+  conv.data.gameState.stats = Game.updatedStats(conv.data.gameState.stats, usersChoiceResponse)
   console.log('Game Stats', conv.data.gameState.stats, conv.data.gameState.progress) // TODO remove after debugging
   // Rebuild the deck:
   conv.data.gameState.deck = Deck.rebuild(conv.data.gameState.deck, usersChoiceResponse)

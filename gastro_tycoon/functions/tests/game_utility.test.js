@@ -35,15 +35,28 @@ test('sets the actual deck', t => {
 
 // .startAssistant
 
-test('startAssistant advanced', t => {
+test('startAssistant adds advanced assistants based on number of previous attempts', t => {
   t.deepEqual(game.startAssistant(11), 'assistants__advanced')
 })
-test('startAssistant intermediate', t => {
+test('startAssistant adds intermediate assistants based on number of previous attempts', t => {
   t.deepEqual(game.startAssistant(6), 'assistants__intermediate')
 })
-test('startAssistant beginner', t => {
+test('startAssistant adds beginner assistants based on number of previous attempts', t => {
   t.deepEqual(game.startAssistant(1), 'assistants__beginner')
 })
-test('startAssistant tutorial', t => {
+test('startAssistant adds tutorial assistants based on number of previous attempts', t => {
   t.deepEqual(game.startAssistant(0), 'assistants__tutorial')
+})
+
+// .updateStats
+
+test('updateStats updates stats effects based on user choise', t => {
+  let userChoiceResponse = {
+    "effect": { "self": 10, "money": 10, "staff": 10, "customers": 10 }
+  }
+
+  t.deepEqual(
+    game.updatedStats({self: 2, money: -2, staff: 0, customers: -10}, userChoiceResponse),
+    {self: 12, money: 8, staff: 10, customers: 0}
+  )
 })

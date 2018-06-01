@@ -1,4 +1,5 @@
 module.exports = {
+
   notStarted: gameState => {
     return !gameState ||
            (gameState && (
@@ -6,6 +7,7 @@ module.exports = {
              gameState.deck.length <= 0
            ))
   },
+
   initialState: (initialDeck = []) => {
     return {
       stats: {
@@ -18,6 +20,7 @@ module.exports = {
       deck: initialDeck
     }
   },
+
   startAssistant: playCount => {
     if(playCount > 10){
       return 'assistants__advanced'
@@ -28,5 +31,14 @@ module.exports = {
     }else{
       return 'assistants__tutorial'
     }
+  },
+
+  updatedStats: (originalStats, usersChoiceResponse) => {
+    return Object.keys(usersChoiceResponse.effect).reduce((accumulator, currentKey) => {
+      let statusValue = usersChoiceResponse.effect[currentKey]
+      accumulator[currentKey] += statusValue
+      return accumulator
+    }, originalStats)
   }
+
 }
