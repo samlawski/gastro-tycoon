@@ -39,6 +39,8 @@ module.exports = {
       accumulator[currentKey] += statusValue
       return accumulator
     }, originalStats)
-  }
+  },
+
+  statsKeysLow: stats => Object.keys(stats).filter(statKey => stats[statKey] < 5)
 
 }

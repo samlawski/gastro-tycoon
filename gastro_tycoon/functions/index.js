@@ -155,7 +155,7 @@ app.intent('ResponseIntent', (conv, params) => {
     conv.ask(new Suggestions(say('gameOverSuggestions')))
   }else{
     // Continue game response
-    let response = `${usersChoiceResponse.text} ${statusUpdate(statKeysTooLow(conv))}`
+    let response = `${usersChoiceResponse.text} ${statusUpdate(Game.statsKeysLow(conv.data.gameState.stats))}`
     conv.ask(new SimpleResponse({
       speech: response,
       text: `${response}${conv.data.gameState.progress > 0 ? ' Days in business: ' + conv.data.gameState.progress : ''}`

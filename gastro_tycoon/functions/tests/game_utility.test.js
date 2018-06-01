@@ -60,3 +60,12 @@ test('updateStats updates stats effects based on user choise', t => {
     {self: 12, money: 8, staff: 10, customers: 0}
   )
 })
+
+// .statsKeysLow
+
+test('statsKeysLow', t => {
+  t.deepEqual(
+    game.statsKeysLow({self: 3, money: 6, customers: 5, staff: 1}),
+    ['self', 'staff']
+  )
+})
