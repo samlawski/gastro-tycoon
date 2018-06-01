@@ -41,6 +41,26 @@ module.exports = {
     }, originalStats)
   },
 
-  statsKeysLow: stats => Object.keys(stats).filter(statKey => stats[statKey] < 5)
+  statsKeysLow: stats => Object.keys(stats).filter(statKey => stats[statKey] < 5),
+  // TODO statKeysTooHigh(conv) {}
+
+  gameOverCriteria: (gameState, usersChoiceResponse) =>{
+    let tooLowStatKeys = Object.keys(gameState.stats).filter(statKey => gameState.stats[statKey] < 0)
+    // let tooHighStatKeys = Object.keys(gameState.stats).filter(statKey => gameState.stats[statKey] > 15)
+
+    if((gameState.deck.length <= 0) && (gameState.progress <= 1)){
+      return 'notEvenStarted'
+    }else if(usersChoiceResponse.gameOver && !gameState.godmode){
+      return usersChoiceResponse.gameOver // custom Game Over message
+    }else if(gameState.stats.self > 15 && !gameState.godmode){
+      return 'self__high'
+    }else if(tooLowStatKeys.length > 0 && !gameState.godmode){
+      return tooLowStatKeys[0]
+    }else if(gameState.deck.length <= 0){
+      return 'cardsOut'
+    }else{
+      return false
+    }
+  }
 
 }

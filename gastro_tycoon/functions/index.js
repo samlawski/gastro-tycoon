@@ -24,38 +24,12 @@ const CARDS = require('./cards_loader.js')
 const Game = require('./game_utility.js')
 const Deck = require('./deck_utility.js')
 
-
-function statKeysTooLow(conv) {
-  return Object.keys(conv.data.gameState.stats).filter(statKey => conv.data.gameState.stats[statKey] < 5)
-}
-
-// TODO statKeysTooHigh(conv) {}
-
 function statusUpdate(statsLow) {
   return statsLow.map(key => say('low', {}, 'statusWarnings')[key]).join(' ')
 }
 
 function anyGameOverCriteriaMet(conv, usersChoiceResponse = {}){
-  return gameOverCriteria(conv, usersChoiceResponse) != false
-}
-
-function gameOverCriteria(conv, usersChoiceResponse){
-  var tooLowStatKeys = Object.keys(conv.data.gameState.stats).filter(statKey => conv.data.gameState.stats[statKey] < 0)
-  // var tooHighStatKeys = Object.keys(conv.data.gameState.stats).filter(statKey => conv.data.gameState.stats[statKey] > 15)
-
-  if((conv.data.gameState.deck.length <= 0) && (conv.data.gameState.progress <= 1)){
-    return 'notEvenStarted'
-  }else if(usersChoiceResponse.gameOver && !conv.data.gameState.godmode){
-    return usersChoiceResponse.gameOver // custom Game Over message
-  }else if(conv.data.gameState.stats.self > 15 && !conv.data.gameState.godmode){
-    return 'self__high'
-  }else if(tooLowStatKeys.length > 0 && !conv.data.gameState.godmode){
-    return tooLowStatKeys[0]
-  }else if(conv.data.gameState.deck.length <= 0){
-    return 'cardsOut'
-  }else{
-    return false
-  }
+  return Game.gameOverCriteria(conv.data.gameState, usersChoiceResponse) != false
 }
 
 /* ** APP MIDDLEWARE ** */
@@ -150,7 +124,7 @@ app.intent('ResponseIntent', (conv, params) => {
   // Stop the game if any game-over criteria is true.
   if(anyGameOverCriteriaMet(conv, usersChoiceResponse)){
     // Game over response
-    conv.ask(`${say('gameOver')[gameOverCriteria(conv, usersChoiceResponse)]} ${say('gameOver__score', {score: conv.data.gameState.progress})}`)
+    conv.ask(`${say('gameOver')[Game.gameOverCriteria(conv.data.gameState, usersChoiceResponse)]} ${say('gameOver__score', {score: conv.data.gameState.progress})}`)
     conv.ask(say('gameOver__message'))
     conv.ask(new Suggestions(say('gameOverSuggestions')))
   }else{

@@ -69,3 +69,53 @@ test('statsKeysLow', t => {
     ['self', 'staff']
   )
 })
+
+// .gameOverCriteria
+
+test('gameOverCriteria met for unstarted games', t => {
+  let gameState = {stats: {}, deck: [], progress: 0}
+  t.deepEqual(
+    game.gameOverCriteria(gameState, {}),
+    'notEvenStarted'
+  )
+})
+test('gameOverCriteria met for response with gameOver true', t => {
+  let gameState = {stats: {}, deck: [1], progress: 1}
+  t.deepEqual(
+    game.gameOverCriteria(gameState, {gameOver: 'You lost!'}),
+    'You lost!'
+  )
+})
+test('gameOverCriteria met for any stats below 0', t => {
+  let gameState = {stats: {self: -1, money: -1, customers: 5, staff: 1}, deck: [1], progress: 1}
+  t.deepEqual(
+    game.gameOverCriteria(gameState, {}),
+    'self'
+  )
+})
+test('gameOverCriteria met for self stats above 15', t => {
+  let gameState = {stats: {self: 16}, deck: [1], progress: 1}
+  t.deepEqual(
+    game.gameOverCriteria(gameState, {}),
+    'self__high'
+  )
+})
+test('gameOverCriteria met for empty deck', t => {
+  let gameState = {stats: {self: 5}, deck: [], progress: 42}
+  t.deepEqual(
+    game.gameOverCriteria(gameState, {}),
+    'cardsOut'
+  )
+})
+test('gameOverCriteria not met with standard set', t => {
+  let gameState = {stats: {self: 5}, deck: [1], progress: 42}
+  t.false(
+    game.gameOverCriteria(gameState, {})
+  )
+})
+test('gameOverCriteria not met with godmode cheat', t => {
+  let gameState = {stats: {self: -1}, deck: [1], progress: 42, godmode: true}
+  t.false(
+    game.gameOverCriteria(gameState, {})
+  )
+})
