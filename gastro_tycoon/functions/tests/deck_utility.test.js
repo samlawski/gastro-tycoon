@@ -162,3 +162,20 @@ test('rebuild add new cards to the bottom', t => {
     "beginnings__menu"
   )
 })
+
+test('rebuild does not add cards of a category if that category is already present', t => {
+  let userChoiceResponse = {
+    "text": "Test",
+    "effect": { "self": 10, "money": 10, "staff": 10, "customers": 10 },
+    "cardsToAdd": {
+      "assistants__beginner": {"top": true, "shuffle": true}
+    },
+    "cardsToRemove": {},
+    "shuffle": false, "gameOver": false
+  }
+
+  t.deepEqual(
+    Deck.rebuild(currentDeck, userChoiceResponse).map(c => c.category),
+    ["assistants__tutorial", "assistants__tutorial", "assistants__beginner"]
+  )
+})

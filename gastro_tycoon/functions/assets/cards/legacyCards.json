@@ -1,66 +1,4 @@
 {
-  "beginner": [
-    {
-      "text": "Let's see. Where do you want to open your business? You can open it more in the city center or further out. Do you want to open it in the city center?",
-      "responses": [
-        {
-          "text": "Alright further out. That does save us some money. But we might not get as many customers. But it's definitely going to help your personal sanity.",
-          "effect": { "self": 1, "money": -1, "staff": 0, "customers": -2 },
-          "cardsToAdd": ["employees__candidates"], "addToTop": false, "shuffleDeck": false
-        },
-        {
-          "text": "City center! A little more expensive and probably more stress. But you are going to have loads of customers! Good choice!",
-          "effect": { "self": -2, "money": -2, "staff": 0, "customers": 2 },
-          "cardsToAdd": ["employees__candidates"], "addToTop": false, "shuffleDeck": false
-        }
-      ]
-    },
-    {
-      "text": "We should probably decide what kind of hot beverages we want to sell. How about coffee?",
-      "responses": [
-        {
-          "text": "Really? Everyone likes coffee. But ok. I think this will make some customers quite unhappy.",
-          "effect": { "self": 1, "money": 2, "staff": 1, "customers": -2 },
-          "cardsToAdd": ["customers", "customers__country", "random"], "addToTop": false, "shuffleDeck": false
-        },
-        {
-          "text": "Nobody can say no to coffee!",
-          "effect": { "self": -2, "money": -2, "staff": 0, "customers": 2 },
-          "cardsToAdd": ["customers", "customers__city", "random__city", "random"], "addToTop": false, "shuffleDeck": false
-        }
-      ]
-    },
-    {
-      "text": "Our first customers! Let's be nice and reduce the price today. What do you think? Should we do it?",
-      "responses": [
-        {
-          "text": "Saving some money. Smart. Although now it looks rather empty. Not many customers were convinced to try a new place on the first day without any special deal.",
-          "effect": { "self": 1, "money": 0, "staff": 1, "customers": -1 },
-          "addToTop": false, "shuffleDeck": false
-        },
-        {
-          "text": "Such a success! A lot of people came just for the discount. We lost a little bit of money but gained lots of happy customers.",
-          "effect": { "self": -1, "money": -2, "staff": 0, "customers": 2 },
-          "addToTop": false, "shuffleDeck": false
-        }
-      ]
-    },
-    {
-      "text": "Do you want to set up a stone oven to make pizza?",
-      "responses": [
-        {
-          "text": "True. There are enough pizza places around anyway.",
-          "effect": { "self": 0, "money": 0, "staff": 0, "customers": 0 },
-          "addToTop": false, "shuffleDeck": false
-        },
-        {
-          "text": "Pizza, Pizza, Pizza!",
-          "effect": { "self": 2, "money": -1, "staff": 0, "customers": 0 },
-          "addToTop": false, "shuffleDeck": false
-        }
-      ]
-    }
-  ],
   "customers": [
     {
       "text": "One of our customers threw up in the middle of the restaurant. I wonder if he is drunk. Should we throw him out just in case?",
@@ -238,51 +176,6 @@
         {
           "text": "Party time! You had a little bit too much alcohol. Your customers are completely forgotten. But your team has the best time they ever had!",
           "effect": { "self": 2, "money": 0, "staff": 2, "customers": -2 }
-        }
-      ]
-    }
-  ],
-  "employees__candidates": [
-    {
-      "text": "Here is a teenager who wants to work for you. Should we hire him? You still could need some staff.",
-      "responses": [
-        {
-          "text": "Alright. Hopefully someone else comes along.",
-          "effect": { "self": 0, "money": -1, "staff": -2, "customers": 0 }
-        },
-        {
-          "text": "Well. At least someone. He doesn't seem to be so expensive. So it's probably not a big deal if he messes up.",
-          "effect": { "self": 2, "money": -2, "staff": 2, "customers": 1 },
-          "cardsToAdd": ["employees"]
-        }
-      ]
-    },
-    {
-      "text": "An older lady claims she can make better coffee than we do. She says she would do it for 5 bucks an hour. Should we get her on board?",
-      "responses": [
-        {
-          "text": "Yeah who knows if she really knows how to even make coffee. However, somebody overheard the conversation and now our customers think we discriminate because of age.",
-          "effect": { "self": -1, "money": 0, "staff": 1, "customers": -4 }
-        },
-        {
-          "text": "Who de thunk. She is right. Her coffee is awesome. The customers love her. She doesn't even cost a lot of money.",
-          "effect": { "self": 2, "money": -1, "staff": 1, "customers": 3 },
-          "cardsToAdd": ["employees"]
-        }
-      ]
-    },
-    {
-      "text": "A girl with green hair applied to a job with us. She might have given us more information about herself. But the green hair is really all I remembered. Should we hire her? ",
-      "responses": [
-        {
-          "text": "Really? I would have thought she'd be a great addition to the team.",
-          "effect": { "self": 0, "money": 0, "staff": 0, "customers": 0 },
-          "addToTop": false, "shuffleDeck": false
-        },
-        {
-          "text": "Good choice. I don't think she would let us down.",
-          "effect": { "self": 1, "money": -1, "staff": 1, "customers": -1 },
-          "cardsToAdd": ["employees__crazy"], "addToTop": false, "shuffleDeck": false
         }
       ]
     }

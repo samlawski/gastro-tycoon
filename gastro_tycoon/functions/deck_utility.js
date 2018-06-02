@@ -16,17 +16,20 @@ module.exports = (() => {
     )
     // Add new cards to the deck
     Object.keys(usersChoiceResponse.cardsToAdd).forEach(category => {
-      let choiceObj = usersChoiceResponse.cardsToAdd[category]
+      if(!newDeck.map(card => card.category).includes(category)){
+        // doc: don't add cards in case cards with the given category are already present
+        let choiceObj = usersChoiceResponse.cardsToAdd[category]
 
-      newDeck = choiceObj.top ?
-        withCardsOnTop(
-          newDeck,
-          choiceObj.shuffle ? helper.shuffle(CARDS[category]) : CARDS[category]
-        ) :
-        withCardsAtBottom(
-          newDeck,
-          choiceObj.shuffle ? helper.shuffle(CARDS[category]) : CARDS[category]
-        )
+        newDeck = choiceObj.top ?
+          withCardsOnTop(
+            newDeck,
+            choiceObj.shuffle ? helper.shuffle(CARDS[category]) : CARDS[category]
+          ) :
+          withCardsAtBottom(
+            newDeck,
+            choiceObj.shuffle ? helper.shuffle(CARDS[category]) : CARDS[category]
+          )
+      }
     })
     // Shuffle deck if response requires it
     newDeck = usersChoiceResponse.shuffle ?
