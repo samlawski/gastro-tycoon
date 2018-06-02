@@ -2,17 +2,17 @@ const Deck = require('./deck_utility.js')
 const CARDS = require('./cards_loader.js')
 const helper = require('./helper.js')
 
-module.exports = {
+module.exports = (() => {
 
-  notStarted: gameState => {
+  const notStarted = gameState => {
     return !gameState ||
            (gameState && (
              gameState.progress <= 0 ||
              gameState.deck.length <= 0
            ))
-  },
+  }
 
-  initialState: (initialDeck = []) => {
+  const initialState = (initialDeck = []) => {
     return {
       stats: {
         self: 0,
@@ -23,9 +23,9 @@ module.exports = {
       progress: 0,
       deck: initialDeck
     }
-  },
+  }
 
-  startAssistant: playCount => {
+  const startAssistant = playCount => {
     if(playCount > 10){
       return 'assistants__advanced'
     }else if(playCount > 5){
@@ -35,20 +35,20 @@ module.exports = {
     }else{
       return 'assistants__tutorial'
     }
-  },
+  }
 
-  updatedStats: (originalStats, usersChoiceResponse) => {
+  const updatedStats = (originalStats, usersChoiceResponse) => {
     return Object.keys(usersChoiceResponse.effect).reduce((accumulator, currentKey) => {
       let statusValue = usersChoiceResponse.effect[currentKey]
       accumulator[currentKey] += statusValue
       return accumulator
     }, originalStats)
-  },
+  }
 
-  statsKeysLow: stats => Object.keys(stats).filter(statKey => stats[statKey] < 5),
+  const statsKeysLow = stats => Object.keys(stats).filter(statKey => stats[statKey] < 5)
   // TODO statKeysTooHigh(conv) {}
 
-  gameOverCriteria: (gameState, usersChoiceResponse) =>{
+  const gameOverCriteria = (gameState, usersChoiceResponse) =>{
     let tooLowStatKeys = Object.keys(gameState.stats).filter(statKey => gameState.stats[statKey] < 0)
     // let tooHighStatKeys = Object.keys(gameState.stats).filter(statKey => gameState.stats[statKey] > 15)
 
@@ -65,9 +65,9 @@ module.exports = {
     }else{
       return false
     }
-  },
+  }
 
-  applyCheat: (gameState, cheat) => {
+  const applyCheat = (gameState, cheat) => {
     if(cheat == 'robinhood'){
       gameState.stats.money += 10
     }else if(cheat == 'godmode'){
@@ -81,4 +81,13 @@ module.exports = {
     return gameState
   }
 
-}
+  return {
+    notStarted,
+    initialState,
+    startAssistant,
+    updatedStats,
+    statsKeysLow,
+    gameOverCriteria,
+    applyCheat
+  }
+})()
