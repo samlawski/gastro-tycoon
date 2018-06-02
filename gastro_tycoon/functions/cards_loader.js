@@ -31,11 +31,11 @@ module.exports = [
   const groupsOfPrefix = require(`./assets/cards/${groupPrefix}.json`)
 
   // Load all separate JSON files into one big object
-  Object.entries(groupsOfPrefix).reduce((group, groupPair) => {
-    const newGroupKey = `${groupPrefix}__${groupPair[0]}`
+  Object.keys(groupsOfPrefix).reduce((group, oldGroupKey) => {
+    const newGroupKey = `${groupPrefix}__${oldGroupKey}`
 
     // Prefix each object with the file name it was in originally
-    group[newGroupKey] = groupPair[1].map(card => {
+    group[newGroupKey] = groupsOfPrefix[oldGroupKey].map(card => {
       // Build card or set default
       return {
         category: newGroupKey,
@@ -53,10 +53,10 @@ module.exports = [
                 customers: returnDefined(response.effect.customers) || 0
               },
               cardsToAdd: isDefined(response.cardsToAdd) ?
-                Object.entries(response.cardsToAdd).reduce((newObj, groupObj) => {
-                  newObj[groupObj[0]] = {
-                    top: returnDefined(groupObj[1].top) || true,
-                    shuffle: returnDefined(groupObj[1].shuffle) || true
+                Object.keys(response.cardsToAdd).reduce((newObj, groupKey) => {
+                  newObj[groupKey] = {
+                    top: returnDefined(response.cardsToAdd[groupKey].top) || true,
+                    shuffle: returnDefined(response.cardsToAdd[groupKey].shuffle) || true
                   }
                   return newObj
                 }, {}) : {},
