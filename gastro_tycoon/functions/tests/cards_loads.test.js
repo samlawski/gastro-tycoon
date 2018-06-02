@@ -1,5 +1,45 @@
 import test from 'ava'
 const cards = require('../cards_loader.js')
+const helper = require('../helper.js')
+
+test('all cardsToAdd keys actually exist as card categories', t => {
+  let allCardsToAddKeys = Object.values(cards).reduce((keyArr, cardsArr) => {
+    let keysFromCards = cardsArr.reduce((groupKeyArr, card) => {
+      let keysFromFresponses = card.responses.reduce((responseKeyArr, response) => {
+        return responseKeyArr.concat(Object.keys(response.cardsToAdd))
+      }, [])
+      return groupKeyArr.concat(keysFromFresponses)
+    }, [])
+    return keyArr.concat(keysFromCards)
+  }, [])
+
+  let uniqueCardKeysToAdd = helper.arrayUniq(allCardsToAddKeys)
+
+  t.true(
+    uniqueCardKeysToAdd.every(category => {
+      return Object.keys(cards).includes(category)
+    })
+  )
+})
+test('all cardsToRemove keys actually exist as card categories', t => {
+  let allCardsToRemoveKeys = Object.values(cards).reduce((keyArr, cardsArr) => {
+    let keysFromCards = cardsArr.reduce((groupKeyArr, card) => {
+      let keysFromFresponses = card.responses.reduce((responseKeyArr, response) => {
+        return responseKeyArr.concat(Object.keys(response.cardsToRemove))
+      }, [])
+      return groupKeyArr.concat(keysFromFresponses)
+    }, [])
+    return keyArr.concat(keysFromCards)
+  }, [])
+
+  let uniqueCardKeysToRemove = helper.arrayUniq(allCardsToRemoveKeys)
+
+  t.true(
+    uniqueCardKeysToRemove.every(category => {
+      return Object.keys(cards).includes(category)
+    })
+  )
+})
 
 test('has all card types as keys prefixed with file name', t => {
   t.deepEqual(

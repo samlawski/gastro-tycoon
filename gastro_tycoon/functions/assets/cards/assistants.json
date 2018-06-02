@@ -11,7 +11,7 @@
         {
           "text": "No worries. That's what I'm here for. I will be your personal assistant and present to you everything you need to decide on and all you gotta do is to tell me whether you agree or not. I will take care of the rest.",
           "effect": { "self": 12, "money": 12, "staff": 12, "customers": 12 },
-          "cardsToAdd": {"stories__tutorial__01": {"shuffle": false}}
+          "cardsToAdd": {"stories__tutorial": {"shuffle": false}}
         }
       ]
     }

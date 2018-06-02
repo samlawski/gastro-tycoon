@@ -4,7 +4,15 @@ const helper = require('../helper.js')
 test('is an object', t => {
   t.deepEqual(
     Object.keys(helper),
-    ['isPresent', 'randomIndexOfArray', 'randomOf', 'shuffle']
+    ['arrayUniq', 'isPresent', 'randomIndexOfArray', 'randomOf', 'shuffle']
+  )
+})
+
+// .arrayUniq()
+test('arrayUniq returns only unique elements of an array', t => {
+  t.deepEqual(
+    helper.arrayUniq([2,2,3,3]),
+    [2,3]
   )
 })
 
