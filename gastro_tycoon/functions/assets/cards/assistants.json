@@ -4,7 +4,7 @@
       "text": "Good day! My name is Sam and I can see it's your first time you're trying to open a gastronomy business. Beginning anything can be hard. I'm here to make your work easier. But you are the one making decisions. Is this your first time playing this game?",
       "responses": [
         {
-          "text": "Oh excellent. In that let's dive right in and pick a location to open your business!",
+          "text": "Oh excellent. In that case let's dive right in and pick a location to open your business!",
           "effect": { "self": 10, "money": 10, "staff": 10, "customers": 10 },
           "cardsToAdd": {"beginnings__locations": {}}
         },
@@ -135,7 +135,8 @@
           "text": "Woohoo! This will be an adventure!",
           "effect": { "self": 10, "money": 15, "staff": 10, "customers": 10 },
           "cardsToRemove": {"assistants__expert": {}},
-          "cardsToAdd": {"stories__space_cafe": {"shuffle": false}}
+          "cardsToAdd": {"stories__space_cafe": {"shuffle": false}},
+          "resetStats": true
         }
       ]
     }

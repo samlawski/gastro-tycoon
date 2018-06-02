@@ -46,7 +46,7 @@ module.exports = [
               text: returnDefined(response.text),
               shuffle: returnDefined(response.shuffle) || true,
               gameOver: returnDefined(response.gameOver),
-              resetStats: returnDefined(response.shuffle),
+              resetStats: returnDefined(response.resetStats),
               effect: {
                 self: returnDefined(response.effect.self) || 0,
                 money: returnDefined(response.effect.money) || 0,
@@ -62,7 +62,13 @@ module.exports = [
                   return newObj
                 }, {}) : {},
               cardsToRemove: isDefined(response.cardsToRemove) ?
-                response.cardsToRemove : {}
+                Object.keys(response.cardsToRemove).reduce((newObj, groupKey) => {
+                  newObj[groupKey] = {
+                    top: returnDefined(response.cardsToRemove[groupKey].top) || true,
+                    shuffle: returnDefined(response.cardsToRemove[groupKey].shuffle) || true
+                  }
+                  return newObj
+                }, {}) : {},
             }
           }) : []
       }
