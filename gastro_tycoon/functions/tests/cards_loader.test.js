@@ -49,7 +49,7 @@ test('has all card types as keys prefixed with file name', t => {
       'beginnings__locations', 'beginnings__menu', 'beginnings__staff', 'beginnings__first_customer', 'beginnings__random',
       'events__city', 'events__random', 'events__rats', 'events__staff',
       'lateStories__mafia',
-      'stories__tutorial', 'stories__vacation'
+      'stories__tutorial', 'stories__space_cafe', 'stories__vacation'
     ]
   )
 })
@@ -57,7 +57,7 @@ test('has all card types as keys prefixed with file name', t => {
 test('cards have text', t => {
   t.deepEqual(
     cards['assistants__tutorial'][0].text,
-    "Good day! My name is Smam and I can see it's your first time you're trying to open a gastronomy business. Beginning anything can be hard. I'm here to make your work easier. But you are the one making decisions. Is this your first time playing this game?"
+    "Good day! My name is Sam and I can see it's your first time you're trying to open a gastronomy business. Beginning anything can be hard. I'm here to make your work easier. But you are the one making decisions. Is this your first time playing this game?"
   )
 })
 
@@ -80,6 +80,9 @@ test('card responses have shuffle property set', t => {
 })
 test('card responses have default gameOver property set', t => {
   t.false(cards['assistants__tutorial'][0].responses[0].gameOver)
+})
+test('card responses have default resetStats property set', t => {
+  t.false(cards['assistants__tutorial'][0].responses[0].resetStats)
 })
 
 test('card response cardsToAdd have all properties set', t => {

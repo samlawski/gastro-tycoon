@@ -160,7 +160,7 @@ app.intent('CheatIntent', (conv, params) => {
       </speak>`,
     text: say(cheat)
   }))
-  if(conv.data.gameState.deck.length > 0){
+  if(conv.data.gameState && conv.data.gameState.deck.length > 0){
     conv.ask(conv.data.gameState.deck[0].text)
     conv.ask(new Suggestions(say('suggestions')))
   }else{

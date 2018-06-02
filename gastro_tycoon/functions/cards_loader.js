@@ -6,14 +6,14 @@
 //       "effect": { "self": 0, "money": 0, "staff": 0, "customers": 0 },
 //       "cardsToAdd": {"": {"top": true, "shuffle": true}},
 //       "cardsToRemove": {"": {"top": true, "shuffle": true}},
-//       "shuffle": true, "gameOver": false
+//       "shuffle": true, "gameOver": false, "resetStats": false
 //     },
 //     { // response: yes
 //       "text": "",
 //       "effect": { "self": 0, "money": 0, "staff": 0, "customers": 0 },
 //       "cardsToAdd": {"": {"top": true, "shuffle": true}},
 //       "cardsToRemove": {"": {"top": true, "shuffle": true}},
-//       "shuffle": true, "gameOver": false
+//       "shuffle": true, "gameOver": false, "resetStats": false
 //     }
 //   ]
 // }
@@ -46,6 +46,7 @@ module.exports = [
               text: returnDefined(response.text),
               shuffle: returnDefined(response.shuffle) || true,
               gameOver: returnDefined(response.gameOver),
+              resetStats: returnDefined(response.shuffle),
               effect: {
                 self: returnDefined(response.effect.self) || 0,
                 money: returnDefined(response.effect.money) || 0,

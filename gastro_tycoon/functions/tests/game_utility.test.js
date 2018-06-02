@@ -29,7 +29,7 @@ test('initialGameState returns the correct object', t => {
 test('sets the actual deck', t => {
   t.deepEqual(
     game.initialState(CARDS['assistants__tutorial']).deck[0].text,
-    "Good day! My name is Smam and I can see it's your first time you're trying to open a gastronomy business. Beginning anything can be hard. I'm here to make your work easier. But you are the one making decisions. Is this your first time playing this game?"
+    "Good day! My name is Sam and I can see it's your first time you're trying to open a gastronomy business. Beginning anything can be hard. I'm here to make your work easier. But you are the one making decisions. Is this your first time playing this game?"
   )
 })
 
@@ -58,6 +58,17 @@ test('updateStats updates stats effects based on user choise', t => {
   t.deepEqual(
     game.updatedStats({self: 2, money: -2, staff: 0, customers: -10}, userChoiceResponse),
     {self: 12, money: 8, staff: 10, customers: 0}
+  )
+})
+test('updateStats with resetStats true sets the effect stats exactly as they are instead of calculating them', t => {
+  let userChoiceResponse = {
+    "effect": { "self": 10, "money": 10, "staff": 10, "customers": 10 },
+    "resetStats": true
+  }
+
+  t.deepEqual(
+    game.updatedStats({self: 2, money: -2, staff: 0, customers: -10}, userChoiceResponse),
+    {self: 10, money: 10, staff: 10, customers: 10}
   )
 })
 

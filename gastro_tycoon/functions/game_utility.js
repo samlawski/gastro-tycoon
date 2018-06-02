@@ -38,11 +38,13 @@ module.exports = (() => {
   }
 
   const updatedStats = (originalStats, usersChoiceResponse) => {
-    return Object.keys(usersChoiceResponse.effect).reduce((accumulator, currentKey) => {
-      let statusValue = usersChoiceResponse.effect[currentKey]
-      accumulator[currentKey] += statusValue
-      return accumulator
-    }, originalStats)
+    return usersChoiceResponse.resetStats ?
+      usersChoiceResponse.effect :
+      Object.keys(usersChoiceResponse.effect).reduce((accumulator, currentKey) => {
+        let statusValue = usersChoiceResponse.effect[currentKey]
+        accumulator[currentKey] += statusValue
+        return accumulator
+      }, originalStats)
   }
 
   const statsKeysLow = stats => Object.keys(stats).filter(statKey => stats[statKey] < 5)
