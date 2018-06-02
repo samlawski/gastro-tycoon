@@ -5,13 +5,15 @@
       "responses": [
         {
           "text": "Not here then.",
-          "effect": { "self": -1, "money": -1, "staff": -1, "customers": -1 }
+          "effect": { "self": -1, "money": -1, "staff": -1, "customers": -1 },
+          "shuffle": false
         },
         {
           "text": "Not much. But a great first shop.",
           "effect": { "self": 2, "money": -2, "staff": 0, "customers": 0 },
           "cardsToAdd": {"beginnings__menu": {}},
-          "cardsToRemove": {"beginnings__locations": {}}
+          "cardsToRemove": {"beginnings__locations": {}},
+          "shuffle": false
         }
       ]
     },
@@ -20,13 +22,15 @@
       "responses": [
         {
           "text": "You know you gotta decide for one place or another.",
-          "effect": { "self": 0, "money": -1, "staff": 0, "customers": 0 }
+          "effect": { "self": 0, "money": -1, "staff": 0, "customers": 0 },
+          "shuffle": false
         },
         {
           "text": "Nice and quiet. This will certainly be a little more low key.",
           "effect": { "self": 2, "money": -2, "staff": 0, "customers": 0 },
           "cardsToAdd": {"beginnings__menu": {}},
-          "cardsToRemove": {"beginnings__locations": {}}
+          "cardsToRemove": {"beginnings__locations": {}},
+          "shuffle": false
         }
       ]
     },
@@ -35,13 +39,16 @@
       "responses": [
         {
           "text": "Too bad. It really looks like a place of peace. Just keep in mind we will run out of money eventually.",
-          "effect": { "self": 0, "money": -1, "staff": 0, "customers": 0 }
+          "effect": { "self": 0, "money": -1, "staff": 0, "customers": 0 },
+          "cardsToAdd": {"events__country__customers": {"top": false}},
+          "shuffle": false
         },
         {
           "text": "Such a beautiful place! I am looking forward to working here!",
           "effect": { "self": 3, "money": -2, "staff": 1, "customers": 0 },
           "cardsToAdd": {"beginnings__menu": {}},
-          "cardsToRemove": {"beginnings__locations": {}}
+          "cardsToRemove": {"beginnings__locations": {}},
+          "shuffle": false
         }
       ]
     },
@@ -50,12 +57,13 @@
       "responses": [
         {
           "text": "I guess you don't like so much the busy life style.",
-          "effect": { "self": 0, "money": -1, "staff": 0, "customers": 0 }
+          "effect": { "self": 0, "money": -1, "staff": 0, "customers": 0 },
+          "shuffle": false
         },
         {
           "text": "City center it is! This is where life is happening.",
           "effect": { "self": -2, "money": -2, "staff": 0, "customers": 2 },
-          "cardsToAdd": {"beginnings__menu": {}, "events__city": {"top": false}},
+          "cardsToAdd": {"beginnings__menu": {}, "events__city": {"top": false}, "events__city__customers": {"top": false}},
           "cardsToRemove": {"beginnings__locations": {}},
           "shuffle": false
         }
@@ -74,7 +82,8 @@
         {
           "text": "Fantastic! I really don't know what I would have done if you had said no. I already ordered a ton.",
           "effect": { "self": 2, "money": -2, "staff": 0, "customers": 0 },
-          "cardsToAdd": {"beginnings__staff": {}}
+          "cardsToAdd": {"beginnings__staff": {}},
+          "shuffle": false
         }
       ]
     },
@@ -89,7 +98,8 @@
         {
           "text": "Nobody can say no to coffee!",
           "effect": { "self": -2, "money": -2, "staff": 0, "customers": 2 },
-          "cardsToAdd": {"beginnings__staff": {}}
+          "cardsToAdd": {"beginnings__staff": {}},
+          "shuffle": false
         }
       ]
     },
@@ -104,7 +114,8 @@
         {
           "text": "Pizza, Pizza, Pizza!",
           "effect": { "self": 2, "money": -1, "staff": 0, "customers": 0 },
-          "cardsToAdd": {"beginnings__staff": {}}
+          "cardsToAdd": {"beginnings__staff": {}},
+          "shuffle": false
         }
       ]
     }
@@ -153,7 +164,7 @@
         {
           "text": "Good choice. I don't think she would let us down.",
           "effect": { "self": 1, "money": -1, "staff": 1, "customers": -1 },
-          "cardsToAdd": {"events__staff": {"top": false}, "beginnings__first_customer": {}},
+          "cardsToAdd": {"events__staff": {"top": false}, "events__staff__crazy": {"top": false}, "beginnings__first_customer": {}},
           "shuffle": false
         }
       ]
@@ -166,30 +177,20 @@
         {
           "text": "Saving some money. Smart. Although now it looks rather empty. Not many customers were convinced to try a new place on the first day without any special deal.",
           "effect": { "self": 1, "money": 0, "staff": 1, "customers": -1 },
-          "cardsToAdd": {"beginnings__random": {}},
+          "cardsToAdd": {
+            "events__random": {},
+            "events__random__customers": {}
+          },
           "cardsToRemove": {"beginnings__first_customer": {}}
         },
         {
           "text": "Such a success! A lot of people came just for the discount. We lost a little bit of money but gained lots of happy customers.",
           "effect": { "self": -1, "money": -2, "staff": 0, "customers": 2 },
-          "cardsToAdd": {"beginnings__random": {}},
+          "cardsToAdd": {
+            "events__random": {},
+            "events__random__customers": {}
+          },
           "cardsToRemove": {"beginnings__first_customer": {}}
-        }
-      ]
-    }
-  ],
-  "random": [
-    {
-      "text": "Oh I think I just saw a rat. Should we hire someone to check this place and kill all rats?",
-      "responses": [
-        {
-          "text": "Risky. Who knows if there are more. But your choice.",
-          "effect": { "self": -1, "money": 0, "staff": 0, "customers": 0 },
-          "cardsToAdd": {"events__rats": {}}
-        },
-        {
-          "text": "I think that's wise. We don't want them to be seen by any customers later on.",
-          "effect": { "self": 1, "money": -1, "staff": 0, "customers": 0 }
         }
       ]
     }

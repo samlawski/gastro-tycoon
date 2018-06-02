@@ -1,3 +1,73 @@
 {
-  "mafia": []
+  "mafia__paid": [
+    {
+      "text": "A robbery! Oh no! What should we do?! They say they want access to our safe. Do we give them access?",
+      "responses": [
+        {
+          "text": "We are all gonna die... Oh no. What's that? A black van showed up, a couple men in suits came out and started shooting at the robbers! Man. Our whole restaurant is destroyed but at least we're alive.",
+          "effect": { "self": 4, "money": -4, "staff": 2, "customers": -1 }
+        },
+        {
+          "text": "They took all our money. But what's that? On the way out they got stopped by a black van. Looks like the people we gave money to before attacked the robbers and took all the money from them.",
+          "effect": { "self": -1, "money": -5, "staff": -2, "customers": -1 }
+        }
+      ]
+    }
+  ],
+  "mafia__unpaid": [
+    {
+      "text": "A black van drove by our restaurant a couple times. What do you think? Should we be worried?",
+      "responses": [
+        {
+          "text": "Probably right...",
+          "effect": { "self": 1, "money": 0, "staff": 0, "customers": 0 }
+        },
+        {
+          "text": "Mhm.",
+          "effect": { "self": -1, "money": 0, "staff": 0, "customers": 0 }
+        }
+      ]
+    },
+    {
+      "text": "I noticed now the third time: Sometimes there is a strange man in a suit sitting in the back watching our employees. Doesn't that make you feel weird, too?",
+      "responses": [
+        {
+          "text": "I don't know how you do it. I feel very uncomfortable.",
+          "effect": { "self": -1, "money": 0, "staff": -1, "customers": -1 }
+        },
+        {
+          "text": "Maybe we should rethink whether to pay the people from before some protection money. Our customers are not particularly happy and you also seem quite stressed.",
+          "effect": { "self": -2, "money": 0, "staff": -1, "customers": -1 }
+        }
+      ]
+    },
+    {
+      "text": "When I arrived this morning, our entire interior was destroyed! Someone must have demolished everything over night! Do you think this might be related to the people who wanted protection money?",
+      "responses": [
+        {
+          "text": "Not sure if you're right. We all still feel weird. But more importantly: The rebuilding of your restaurant will cost us quite some money.",
+          "effect": { "self": -1, "money": -3, "staff": -1, "customers": -1 }
+        },
+        {
+          "text": "Oh oh. Maybe they give us another chance... For now we have to think about rebuilding our restaurant. And maybe come up with some ways to calm our staff down.",
+          "effect": { "self": -1, "money": -3, "staff": -2, "customers": -1 }
+        }
+      ]
+    }
+  ],
+  "startup": [
+    {
+      "text": "A full bearded from the startup next doort told us his company developed a new vegan, lactose free, gluten free, alcohol free, caffein free, sugar free drink. They ask if we want to sell it.",
+      "responses": [
+        {
+          "text": "Didn't seem like a tasty drink.",
+          "effect": { "self": -1 }
+        },
+        {
+          "text": "Well, maybe Drinkster will be the next big thing. We will see how our customers like it.",
+          "effect": { "self": 0, "money": -2, "staff": 0, "customers": 2 }
+        }
+      ]
+    }
+  ]
 }

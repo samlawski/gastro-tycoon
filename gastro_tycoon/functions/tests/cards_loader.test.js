@@ -41,19 +41,6 @@ test('all cardsToRemove keys actually exist as card categories', t => {
   )
 })
 
-test('has all card types as keys prefixed with file name', t => {
-  t.deepEqual(
-    Object.keys(cards),
-    [
-      'assistants__tutorial', 'assistants__beginner', 'assistants__intermediate', 'assistants__expert',
-      'beginnings__locations', 'beginnings__menu', 'beginnings__staff', 'beginnings__first_customer', 'beginnings__random',
-      'events__city', 'events__random', 'events__rats', 'events__staff',
-      'lateStories__mafia',
-      'stories__tutorial', 'stories__space_cafe', 'stories__vacation'
-    ]
-  )
-})
-
 test('cards have text', t => {
   t.deepEqual(
     cards['assistants__tutorial'][0].text,

@@ -46,7 +46,7 @@
         {
           "text": "No? Hm. Not sure what you're waiting for then.",
           "effect": { "self": -1, "money": -2, "staff": -1, "customers": -1 },
-          "cardsToAdd": {"beginnings__random": {}, "beginnings__staff": {}, "beginnings__menu": {}}
+          "cardsToAdd": {"beginnings__staff": {}, "beginnings__menu": {}}
         },
         {
           "text": "How exciting!",
