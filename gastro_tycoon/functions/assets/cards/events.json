@@ -278,7 +278,21 @@
       ]
     }
   ],
-  "rats": [],
+  "rats": [
+    {
+      "text": "Those darn rats. I just saw one again. And I think a customer did, too. Should we give some money to the customer to stay quiet about it?",
+      "responses": [
+        {
+          "text": "Oh oh... He really saw the rat and is starting to tell people. That's going to be bad for business.",
+          "effect": { "self": 0, "money": 0, "staff": 0, "customers": -2 }
+        },
+        {
+          "text": "He quietly left. I don't think anyone noticed.",
+          "effect": { "self": -1, "money": -1, "staff": 0, "customers": 0 }
+        }
+      ]
+    }
+  ],
   "staff": [
     {
       "text": "One of your employees accidentally lid himself on fire. Should we call the firefighters?",

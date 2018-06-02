@@ -63,12 +63,13 @@
         {
           "text": "Not a crater. Alright. Let's build it right here then.",
           "effect": { "self": -2, "money": -1, "staff": 0, "customers": 0 },
-          "cardsToAdd": {"stories__space_cafe__asteroids": {}}
+          "cardsToAdd": {"stories__space_cafe__asteroids": {}},
+          "shuffle": false
         },
         {
           "text": "I think that was a wise choice. craters offer protection against asteroids.",
           "effect": { "self": 2, "money": -1, "staff": 0, "customers": 0 },
-          "cardsToAdd": {"stories__space_cafe__random": {}}
+          "shuffle": false
         }
       ]
     },
@@ -112,15 +113,6 @@
       ]
     },
     {
-      "text": "Not sure anyone will ever show up... Don't you think?",
-      "responses": [
-        {"gameOver": "lostInSpace"},
-        {"gameOver": "lostInSpace"}
-      ]
-    }
-  ],
-  "space_cafe__random": [
-    {
       "text": "A group of small green people walked in. They don't seem human. Should we serve them anyway?",
       "responses": [
         {"gameOver": "deathByAlien"},
@@ -128,6 +120,13 @@
           "text": "These little guys seem particularly happy.",
           "effect": { "self": 0, "money": 2, "staff": 0, "customers": 2 }
         }
+      ]
+    },
+    {
+      "text": "Not sure anyone will ever show up... Don't you think?",
+      "responses": [
+        {"gameOver": "lostInSpace"},
+        {"gameOver": "lostInSpace"}
       ]
     }
   ],

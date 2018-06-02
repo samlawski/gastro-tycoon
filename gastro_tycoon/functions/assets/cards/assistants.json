@@ -136,7 +136,7 @@
           "effect": { "self": 10, "money": 15, "staff": 10, "customers": 10 },
           "cardsToRemove": {"assistants__expert": {}},
           "cardsToAdd": {"stories__space_cafe": {"shuffle": false}},
-          "resetStats": true
+          "resetStats": true, "shuffle": false
         }
       ]
     }
