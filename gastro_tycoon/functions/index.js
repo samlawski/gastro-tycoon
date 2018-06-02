@@ -160,8 +160,12 @@ app.intent('CheatIntent', (conv, params) => {
       </speak>`,
     text: say(cheat)
   }))
-  conv.ask(conv.data.gameState.deck[0].text)
-  conv.ask(new Suggestions(say('suggestions')))
+  if(conv.data.gameState.deck.length > 0){
+    conv.ask(conv.data.gameState.deck[0].text)
+    conv.ask(new Suggestions(say('suggestions')))
+  }else{
+    conv.ask(say('notStarted'))
+  }
 })
 
 /* ** EXECUTE ACTION ** */
