@@ -51,7 +51,7 @@ test('cards have text', t => {
 test('card responses have text', t => {
   t.deepEqual(
     cards['assistants__tutorial'][0].responses[0].text,
-    "Oh excellent. In that let's dive right in and pick a location to open your business!"
+    "Oh excellent. In that case let's dive right in and pick a location to open your business!"
   )
 })
 

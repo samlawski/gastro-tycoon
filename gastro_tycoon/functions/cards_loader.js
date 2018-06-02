@@ -47,12 +47,13 @@ module.exports = [
               shuffle: returnDefined(response.shuffle) || true,
               gameOver: returnDefined(response.gameOver),
               resetStats: returnDefined(response.resetStats),
-              effect: {
-                self: returnDefined(response.effect.self) || 0,
-                money: returnDefined(response.effect.money) || 0,
-                staff: returnDefined(response.effect.staff) || 0,
-                customers: returnDefined(response.effect.customers) || 0
-              },
+              effect: returnDefined(response.effect) ?
+                {
+                  self: returnDefined(response.effect.self) || 0,
+                  money: returnDefined(response.effect.money) || 0,
+                  staff: returnDefined(response.effect.staff) || 0,
+                  customers: returnDefined(response.effect.customers) || 0
+                } : {self: 0, money: 0, staff: 0, customers: 0},
               cardsToAdd: isDefined(response.cardsToAdd) ?
                 Object.keys(response.cardsToAdd).reduce((newObj, groupKey) => {
                   newObj[groupKey] = {
