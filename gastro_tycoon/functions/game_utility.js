@@ -67,18 +67,21 @@ module.exports = (() => {
     }
   }
 
-  const applyCheat = (gameState, cheat) => {
+  const applyCheat = (conv, cheat) => {
     if(cheat == 'robinhood'){
-      gameState.stats.money += 10
+      conv.data.gameState.stats.money += 10
     }else if(cheat == 'godmode'){
-      gameState.godmode = true
+      conv.data.gameState.godmode = true
+    }else if(cheat == 'reset'){
+      conv.user.storage.highScore = 0
+      conv.user.storage.playedGamesCount = 0
     }else if(cheat == 'pirate'){
-      gameState.deck = Deck.withCardsOnTop(
-        gameState.deck,
+      conv.data.gameState.deck = Deck.withCardsOnTop(
+        conv.data.gameState.deck,
         helper.shuffle(CARDS['stories__vacation'])
       )
     }
-    return gameState
+    return conv
   }
 
   return {

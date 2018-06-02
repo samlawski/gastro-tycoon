@@ -150,7 +150,7 @@ app.intent('ResponseIntent', (conv, params) => {
 
 app.intent('CheatIntent', (conv, params) => {
   let cheat = params['cheatCode']
-  conv.data.gameState = Game.applyCheat(cong.data.gameState, cheat)
+  conv = Game.applyCheat(conv, cheat)
 
   conv.ask(new SimpleResponse({
     speech: `
