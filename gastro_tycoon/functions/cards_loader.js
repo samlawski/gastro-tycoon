@@ -19,7 +19,7 @@
 // }
 
 const isDefined = variable => variable != undefined
-const returnDefined = variable => isDefined(variable) ? variable : false
+const definedOrFallback = (variable, fallback) => isDefined(variable) ? variable : fallback
 
 module.exports = [
   'assistants',
@@ -39,34 +39,34 @@ module.exports = [
       // Build card or set default
       return {
         category: newGroupKey,
-        text: returnDefined(card.text) || '',
+        text: definedOrFallback(card.text, ''),
         responses: isDefined(card.responses) ?
           card.responses.map(response => {
             return {
-              text: returnDefined(response.text),
-              shuffle: returnDefined(response.shuffle) || true,
-              gameOver: returnDefined(response.gameOver),
-              resetStats: returnDefined(response.resetStats),
-              effect: returnDefined(response.effect) ?
+              text: definedOrFallback(response.text, ''),
+              shuffle: definedOrFallback(response.shuffle, true),
+              gameOver: definedOrFallback(response.gameOver, false),
+              resetStats: definedOrFallback(response.resetStats, false),
+              effect: isDefined(response.effect) ?
                 {
-                  self: returnDefined(response.effect.self) || 0,
-                  money: returnDefined(response.effect.money) || 0,
-                  staff: returnDefined(response.effect.staff) || 0,
-                  customers: returnDefined(response.effect.customers) || 0
+                  self: definedOrFallback(response.effect.self, 0),
+                  money: definedOrFallback(response.effect.money, 0),
+                  staff: definedOrFallback(response.effect.staff, 0),
+                  customers: definedOrFallback(response.effect.customers, 0)
                 } : {self: 0, money: 0, staff: 0, customers: 0},
               cardsToAdd: isDefined(response.cardsToAdd) ?
                 Object.keys(response.cardsToAdd).reduce((newObj, groupKey) => {
                   newObj[groupKey] = {
-                    top: returnDefined(response.cardsToAdd[groupKey].top) || true,
-                    shuffle: returnDefined(response.cardsToAdd[groupKey].shuffle) || true
+                    top: definedOrFallback(response.cardsToAdd[groupKey].top, true),
+                    shuffle: definedOrFallback(response.cardsToAdd[groupKey].shuffle, true)
                   }
                   return newObj
                 }, {}) : {},
               cardsToRemove: isDefined(response.cardsToRemove) ?
                 Object.keys(response.cardsToRemove).reduce((newObj, groupKey) => {
                   newObj[groupKey] = {
-                    top: returnDefined(response.cardsToRemove[groupKey].top) || true,
-                    shuffle: returnDefined(response.cardsToRemove[groupKey].shuffle) || true
+                    top: definedOrFallback(response.cardsToRemove[groupKey].top, true),
+                    shuffle: definedOrFallback(response.cardsToRemove[groupKey].shuffle, true)
                   }
                   return newObj
                 }, {}) : {},

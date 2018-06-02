@@ -63,7 +63,7 @@
         {
           "text": "Not a crater. Alright. Let's build it right here then.",
           "effect": { "self": -2, "money": -1, "staff": 0, "customers": 0 },
-          "cardsToAdd": {"stories__space_cafe__asteroids": {}},
+          "cardsToAdd": {"stories__space_cafe__asteroids": {"top": false}},
           "shuffle": false
         },
         {
