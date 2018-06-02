@@ -41,6 +41,9 @@ app.middleware(conv => {
     conv.user.locale : 'en-US'
   // doc: Set current action (as speech assets are nested by intent action)
   say.prototype.action = conv.action
+  // doc: Initialize user storage if it's not set yet
+  conv.user.storage.highScore = conv.user.storage.highScore || 0
+  conv.user.storage.playedGamesCount = conv.user.storage.playedGamesCount || 0
 })
 
 /* ** EVENT ACTIONS ** */
@@ -62,10 +65,12 @@ app.intent('RestartGameHandler', (conv, params, confirmationGranted) => { // Onl
 /* ** USER INTENT ACTIONS ** */
 
 app.intent('WelcomeIntent', conv => {
-  let scoreDays = `${conv.user.storage.highScore} day${conv.user.storage.highScore > 1 ? 's' : ''}`
-  (conv.user.storage.highScore > 0) ?
-    conv.ask(say('welcomeBack', {scoreDays: scoreDays})) :
+  if(conv.user.storage.highScore > 0){
+    let scoreDays = `${conv.user.storage.highScore} day${conv.user.storage.highScore > 1 ? 's' : ''}`
+    conv.ask(say('welcomeBack', {scoreDays: scoreDays}))
+  }else{
     conv.ask(say('welcome'))
+  }
   conv.ask(new Suggestions(say('suggestions')))
 })
 
@@ -100,6 +105,8 @@ app.intent('StartNewGameIntent', conv => {
         ]
       )
     )
+    // Increase number of games the user has played
+    conv.user.storage.playedGamesCount++
 
     conv.ask(helper.randomOf(say('startOptions')))
     conv.ask(conv.data.gameState.deck[0].text)
