@@ -27,7 +27,7 @@ module.exports = (() => {
 
   const startAssistant = playCount => {
     if(playCount > 10){
-      return 'assistants__advanced'
+      return 'assistants__expert'
     }else if(playCount > 5){
       return 'assistants__intermediate'
     }else if(playCount > 0){
@@ -53,8 +53,16 @@ module.exports = (() => {
   const gameOverCriteria = (gameState, usersChoiceResponse) =>{
     let tooLowStatKeys = Object.keys(gameState.stats).filter(statKey => gameState.stats[statKey] < 0)
     // let tooHighStatKeys = Object.keys(gameState.stats).filter(statKey => gameState.stats[statKey] > 15)
+    let lastCardStillBeginning = gameState.deck.length == 1 && [
+      'beginnings__locations',
+      'assistants__beginner',
+      'assistants__tutorial',
+      'assistants__intermediate',
+      'assistants__expert'
+    ].includes(gameState.deck[0].category)
 
-    if((gameState.deck.length <= 0) && (gameState.progress <= 1)){
+    if((gameState.deck.length <= 0 && gameState.progress <= 0) ||
+        lastCardStillBeginning){
       return 'notEvenStarted'
     }else if(usersChoiceResponse.gameOver && !gameState.godmode){
       return usersChoiceResponse.gameOver // custom Game Over message

@@ -36,7 +36,7 @@ test('sets the actual deck', t => {
 // .startAssistant
 
 test('startAssistant adds advanced assistants based on number of previous attempts', t => {
-  t.deepEqual(game.startAssistant(11), 'assistants__advanced')
+  t.deepEqual(game.startAssistant(11), 'assistants__expert')
 })
 test('startAssistant adds intermediate assistants based on number of previous attempts', t => {
   t.deepEqual(game.startAssistant(6), 'assistants__intermediate')
@@ -85,6 +85,20 @@ test('statsKeysLow', t => {
 
 test('gameOverCriteria met for unstarted games', t => {
   let gameState = {stats: {}, deck: [], progress: 0}
+  t.deepEqual(
+    game.gameOverCriteria(gameState, {}),
+    'notEvenStarted'
+  )
+})
+test('gameOverCriteria notEvenStarted if last card is beginnings__locations', t => {
+  let gameState = {stats: {}, deck: [{category: 'beginnings__locations'}], progress: 2}
+  t.deepEqual(
+    game.gameOverCriteria(gameState, {}),
+    'notEvenStarted'
+  )
+})
+test('gameOverCriteria notEvenStarted if last card is assistants__*', t => {
+  let gameState = {stats: {}, deck: [{category: 'assistants__tutorial'}], progress: 2}
   t.deepEqual(
     game.gameOverCriteria(gameState, {}),
     'notEvenStarted'
