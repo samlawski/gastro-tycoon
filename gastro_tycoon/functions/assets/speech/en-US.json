@@ -54,7 +54,9 @@
     "robinhood": "Let it rain gold!",
     "godmode": "You can't lose anymore!",
     "pirate": "Let's go on vacation.",
-    "suggestions": ["Yes", "No"]
+    "reset": "I totally forgot who you are...",
+    "suggestions": ["Yes", "No"],
+    "notStarted": "Now, let me know if you want to start a new game"
   },
   "statusWarnings": {
     "low": {
