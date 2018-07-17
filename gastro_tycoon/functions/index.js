@@ -151,13 +151,11 @@ app.intent('ResponseIntent', (conv, params) => {
     }))
     // 2. Display current stats during the game.
     if(conv.data.gameState.progress > 0){
-      const statusCard = say('statusCard', {
-        daysInBusiness: conv.data.gameState.progress,
-        ...Game.statsAsEmoji(conv.data.gameState.stats)
-      })
+      const statsForDisplay = Game.statsAsEmoji(conv.data.gameState.stats)
+      statsForDisplay.daysInBusiness = conv.data.gameState.progress
 
       conv.ask(new BasicCard({
-        text: statusCard
+        text: say('statusCard', statsForDisplay)
       }))
     }
     // 3. Next cards text
