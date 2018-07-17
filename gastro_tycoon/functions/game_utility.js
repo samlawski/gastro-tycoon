@@ -3,7 +3,6 @@ const CARDS = require('./cards_loader.js')
 const helper = require('./helper.js')
 
 module.exports = (() => {
-
   const notStarted = gameState => {
     return !gameState ||
            (gameState && (
@@ -50,6 +49,13 @@ module.exports = (() => {
   const statsKeysLow = stats => Object.keys(stats).filter(statKey => stats[statKey] < 5)
   // TODO statKeysTooHigh(conv) {}
 
+  const statsAsEmoji = originalStats => {
+    return Object.keys(originalStats).reduce((stats, statKey) => {
+      stats[statKey] = _numberToEmoji(originalStats[statKey])
+      return stats
+    }, {})
+  }
+
   const gameOverCriteria = (gameState, usersChoiceResponse) =>{
     let tooLowStatKeys = Object.keys(gameState.stats).filter(statKey => gameState.stats[statKey] < 0)
     // let tooHighStatKeys = Object.keys(gameState.stats).filter(statKey => gameState.stats[statKey] > 15)
@@ -94,13 +100,30 @@ module.exports = (() => {
     return conv
   }
 
+  const _numberToEmoji = number => {
+    //🌕🌖🌗🌘🌑
+    const maxValues = [
+      [4, '😰'],
+      [7, '☹️'],
+      [10, '🙁'],
+      [13, '😐'],
+      [16, '🙂'],
+      [19, '😀'],
+      [21, '😁']
+    ]
+    const statArray = maxValues.find(valArr => number < valArr[0]) || maxValues[maxValues.length - 1]
+    return statArray[1]
+  }
+
   return {
     notStarted,
     initialState,
     startAssistant,
     updatedStats,
     statsKeysLow,
+    statsAsEmoji,
     gameOverCriteria,
-    applyCheat
+    applyCheat,
+    _numberToEmoji
   }
 })()

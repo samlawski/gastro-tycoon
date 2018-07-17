@@ -11,7 +11,13 @@
 */
 
 /* ** DEPENDENCIES ** */
-const {dialogflow, Confirmation, Suggestions, SimpleResponse} = require('actions-on-google')
+const {
+  dialogflow,
+  Confirmation,
+  Suggestions,
+  SimpleResponse,
+  BasicCard
+} = require('actions-on-google')
 const functions = require('firebase-functions') // doc: to export the function
 const app = dialogflow({debug: true}) // doc: toggle logs for debugging - TODO
 
@@ -138,12 +144,25 @@ app.intent('ResponseIntent', (conv, params) => {
     conv.ask(new Suggestions(say('gameOverSuggestions')))
   }else{
     // Continue game response
-    let response = `${usersChoiceResponse.text} ${statusUpdate(Game.statsKeysLow(conv.data.gameState.stats))}`
+    // 1. Follow up of previous question & status update.
     conv.ask(new SimpleResponse({
-      speech: response,
-      text: `${response}${conv.data.gameState.progress > 0 ? ' Days in business: ' + conv.data.gameState.progress : ''}`
+      speech: `${usersChoiceResponse.text} ${statusUpdate(Game.statsKeysLow(conv.data.gameState.stats))}`,
+      text: usersChoiceResponse.text
     }))
+    // 2. Display current stats during the game.
+    if(conv.data.gameState.progress > 0){
+      const statusCard = say('statusCard', {
+        daysInBusiness: conv.data.gameState.progress,
+        ...Game.statsAsEmoji(conv.data.gameState.stats)
+      })
+
+      conv.ask(new BasicCard({
+        text: statusCard
+      }))
+    }
+    // 3. Next cards text
     conv.ask(conv.data.gameState.deck[0].text)
+    // 4. Suggestion chips
     conv.ask(new Suggestions(say('suggestions')))
   }
 })

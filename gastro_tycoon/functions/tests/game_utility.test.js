@@ -81,6 +81,15 @@ test('statsKeysLow', t => {
   )
 })
 
+// .statsAsEmoji
+
+test('statsAsEmoji converts numbers to emoji', t => {
+  t.deepEqual(
+    game.statsAsEmoji({self: 3, money: 6, customers: 10, staff: 20}),
+    {self: '😰', money: '☹️', customers: '😐', staff: '😁'}
+  )
+})
+
 // .gameOverCriteria
 
 test('gameOverCriteria met for unstarted games', t => {
@@ -210,4 +219,31 @@ test('applyCheat does not overwrite other conv values', t => {
     game.applyCheat(conv, 'robinhood').user.storage.highScore,
     42
   )
+})
+
+// PRIVATE METHODS
+
+// ._numberToEmoji
+
+test('_numberToEmoji returns lowest emoji as low fallback', t => {
+  t.deepEqual(game._numberToEmoji(-1), '😰')
+})
+test('_numberToEmoji returns lowest emojis', t => {
+  t.deepEqual(game._numberToEmoji(0), '😰')
+  t.deepEqual(game._numberToEmoji(1), '😰')
+  t.deepEqual(game._numberToEmoji(2), '😰')
+  t.deepEqual(game._numberToEmoji(3), '😰')
+})
+test('_numberToEmoji returns medium emojis', t => {
+  t.deepEqual(game._numberToEmoji(4), '☹️')
+  t.deepEqual(game._numberToEmoji(5), '☹️')
+  t.deepEqual(game._numberToEmoji(6), '☹️')
+})
+test('_numberToEmoji returns highest emoji', t => {
+  t.deepEqual(game._numberToEmoji(19), '😁')
+  t.deepEqual(game._numberToEmoji(20), '😁')
+  t.deepEqual(game._numberToEmoji(21), '😁')
+})
+test('_numberToEmoji returns highest emoji as high fallback', t => {
+  t.deepEqual(game._numberToEmoji(100), '😁')
 })

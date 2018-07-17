@@ -33,6 +33,7 @@
     "suggestions": ["Yes", "No"]
   },
   "responseIntent": {
+    "statusCard": "**Stats**  \n  \nYou: %self  \nYour finances: %money  \nYour employees: %staff  \nYour customers: %customers  \n  \nDays in business: %daysInBusiness",
     "suggestions": ["Yes", "No"],
     "gameOverSuggestions": ["Start over!", "Stop."],
     "gameOver": {
