@@ -10,7 +10,7 @@
         },
         {
           "text": "Not much. But a great first shop.",
-          "effect": { "self": 2, "money": -2, "staff": 0, "customers": 0 },
+          "effect": { "self": 1, "money": -1, "staff": 0, "customers": 0 },
           "cardsToAdd": {"beginnings__menu": {}},
           "cardsToRemove": {"beginnings__locations": {}},
           "shuffle": false
@@ -27,7 +27,7 @@
         },
         {
           "text": "Nice and quiet. This will certainly be a little more low key.",
-          "effect": { "self": 2, "money": -2, "staff": 0, "customers": 0 },
+          "effect": { "self": 1, "money": -1, "staff": 0, "customers": 0 },
           "cardsToAdd": {"beginnings__menu": {}},
           "cardsToRemove": {"beginnings__locations": {}},
           "shuffle": false
@@ -40,13 +40,15 @@
         {
           "text": "Too bad. It really looks like a place of peace. Just keep in mind we will run out of money eventually.",
           "effect": { "self": 0, "money": -1, "staff": 0, "customers": 0 },
-          "cardsToAdd": {"events__country__customers": {"top": false}},
           "shuffle": false
         },
         {
           "text": "Such a beautiful place! I am looking forward to working here!",
-          "effect": { "self": 3, "money": -2, "staff": 1, "customers": 0 },
-          "cardsToAdd": {"beginnings__menu": {}},
+          "effect": { "self": 2, "money": -1, "staff": 1, "customers": -1 },
+          "cardsToAdd": {
+            "beginnings__menu": {},
+            "events__country__customers": {"top": false}
+          },
           "cardsToRemove": {"beginnings__locations": {}},
           "shuffle": false
         }
@@ -62,8 +64,127 @@
         },
         {
           "text": "City center it is! This is where life is happening.",
-          "effect": { "self": -2, "money": -2, "staff": 0, "customers": 2 },
+          "effect": { "self": -1, "money": -1, "staff": 0, "customers": 2 },
           "cardsToAdd": {"beginnings__menu": {}, "events__city": {"top": false}, "events__city__customers": {"top": false}},
+          "cardsToRemove": {"beginnings__locations": {}},
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "text": "Competition is good for business, people say. Should we open our restaurant right next to your rival Frankenstein?",
+      "responses": [
+        {
+          "text": "Sure. Let's not step on anyone's toes just yet.",
+          "effect": { "self": 0, "money": -1, "staff": 0, "customers": 0 },
+          "shuffle": false
+        },
+        {
+          "text": "Frankenstein does not appear to be too happy about our choice of location. He'll get over it.",
+          "effect": { "self": 0, "money": -1, "staff": -1, "customers": 2 },
+          "cardsToAdd": {"beginnings__menu": {}},
+          "cardsToRemove": {"beginnings__locations": {}},
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "text": "I found an unused roof top for sale. With a little bit of extra money we could build a roof top restaurant. That would probably be very successful. Want to do it?",
+      "responses": [
+        {
+          "text": "No roof top bar then.",
+          "effect": { "self": 0, "money": -1, "staff": 0, "customers": 0 },
+          "shuffle": false
+        },
+        {
+          "text": "Nice! This view is going to draw a lot of customers in!",
+          "effect": { "self": 0, "money": -2, "staff": 0, "customers": 2 },
+          "cardsToAdd": {"beginnings__menu": {}, "events__city": {"top": false}},
+          "cardsToRemove": {"beginnings__locations": {}},
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "text": "I have an awesome budget idea! Let's get a tent and rent out a small space on a parking lot. That should save us some money in the beginning. What do you think?",
+      "responses": [
+        {
+          "text": "Fine. I didn't think it was a good idea anyway.",
+          "effect": { "self": 0, "money": -1, "staff": 0, "customers": 0 },
+          "shuffle": false
+        },
+        {
+          "text": "It's so simple, yet so nice!",
+          "effect": { "self": 0, "money": 0, "staff": 0, "customers": 0 },
+          "cardsToAdd": {"beginnings__menu": {}},
+          "cardsToRemove": {"beginnings__locations": {}},
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "text": "Let's start our business on a university campus. We will have so much business! Don't you think?",
+      "responses": [
+        {
+          "text": "Students might be too difficult anyway.",
+          "effect": { "self": 0, "money": -1, "staff": 0, "customers": 0 },
+          "shuffle": false
+        },
+        {
+          "text": "Exciting! Such a great opportunity.",
+          "effect": { "self": -1, "money": -1, "staff": 1, "customers": 1 },
+          "cardsToAdd": {"beginnings__menu": {}},
+          "cardsToRemove": {"beginnings__locations": {}},
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "text": "This former fast food restaurant has been empty for quite a while. Maybe we can take it over?",
+      "responses": [
+        {
+          "text": "No to fast food!",
+          "effect": { "self": 0, "money": -1, "staff": 0, "customers": 0 },
+          "shuffle": false
+        },
+        {
+          "text": "Good. I think we can even reuse some of the furniture that's still in here.",
+          "effect": { "self": -1, "money": 1, "staff": 0, "customers": 0 },
+          "cardsToAdd": {"beginnings__menu": {}},
+          "cardsToRemove": {"beginnings__locations": {}},
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "text": "How do you like the idea of opening up shop in an old industrial garage?",
+      "responses": [
+        {
+          "text": "Feels maybe a little bit too hipster.",
+          "effect": { "self": 0, "money": -1, "staff": 0, "customers": 0 },
+          "shuffle": false
+        },
+        {
+          "text": "Very trendy. I think we will be particularly successful among the younger folks.",
+          "effect": { "self": 0, "money": -1, "staff": 0, "customers": 1 },
+          "cardsToAdd": {"beginnings__menu": {}},
+          "cardsToRemove": {"beginnings__locations": {}},
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "text": "In the suburbs I found a perfect small property. It's completely empty but it's very easy to reach by car. We could build our restaurant here. Do you like the idea?",
+      "responses": [
+        {
+          "text": "Suburbs are not for everyone I guess.",
+          "effect": { "self": 0, "money": -1, "staff": 0, "customers": 0 },
+          "shuffle": false
+        },
+        {
+          "text": "Great. Now we get to build our place exactly the way we want it.",
+          "effect": { "self": 2, "money": -2, "staff": 0, "customers": 0 },
+          "cardsToAdd": {"beginnings__menu": {}},
           "cardsToRemove": {"beginnings__locations": {}},
           "shuffle": false
         }

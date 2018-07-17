@@ -86,7 +86,7 @@ test('statsKeysLow', t => {
 test('statsAsEmoji converts numbers to emoji', t => {
   t.deepEqual(
     game.statsAsEmoji({self: 3, money: 6, customers: 10, staff: 20}),
-    {self: '😰', money: '☹️', customers: '😐', staff: '😁'}
+    {self: '😨', money: '😥', customers: '😐', staff: '😁'}
   )
 })
 
