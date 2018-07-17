@@ -193,11 +193,11 @@
   ],
   "menu": [
     {
-      "text": "Let's start by adding some bananas to our stock pile. What do you think?",
+      "text": "Let's add some bananas to our menu. What do you think?",
       "responses": [
         {
           "text": "Oh... That's awkward... Nevermind then.",
-          "effect": { "self": 0, "money": -1, "staff": -1, "customers": 0 },
+          "effect": { "self": 0, "money": -1, "staff": 0, "customers": 0 },
           "shuffle": false
         },
         {

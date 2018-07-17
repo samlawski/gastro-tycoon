@@ -72,7 +72,7 @@ module.exports = (() => {
       return 'notEvenStarted'
     }else if(usersChoiceResponse.gameOver && !gameState.godmode){
       return usersChoiceResponse.gameOver // custom Game Over message
-    }else if(gameState.stats.self > 15 && !gameState.godmode){
+    }else if(gameState.stats.self > 21 && !gameState.godmode){
       return 'self__high'
     }else if(tooLowStatKeys.length > 0 && !gameState.godmode){
       return tooLowStatKeys[0]
