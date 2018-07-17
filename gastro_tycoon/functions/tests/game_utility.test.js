@@ -235,9 +235,9 @@ test('_numberToEmoji returns lowest emojis', t => {
   t.deepEqual(game._numberToEmoji(3), '😰')
 })
 test('_numberToEmoji returns medium emojis', t => {
-  t.deepEqual(game._numberToEmoji(4), '☹️')
-  t.deepEqual(game._numberToEmoji(5), '☹️')
-  t.deepEqual(game._numberToEmoji(6), '☹️')
+  t.deepEqual(game._numberToEmoji(4), '😞')
+  t.deepEqual(game._numberToEmoji(5), '😞')
+  t.deepEqual(game._numberToEmoji(6), '😞')
 })
 test('_numberToEmoji returns highest emoji', t => {
   t.deepEqual(game._numberToEmoji(19), '😁')
