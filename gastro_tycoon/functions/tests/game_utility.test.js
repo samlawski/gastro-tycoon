@@ -127,8 +127,8 @@ test('gameOverCriteria met for any stats below 0', t => {
     'self'
   )
 })
-test('gameOverCriteria met for self stats above 15', t => {
-  let gameState = {stats: {self: 16}, deck: [1], progress: 1}
+test('gameOverCriteria met for self stats above 21', t => {
+  let gameState = {stats: {self: 22}, deck: [1], progress: 1}
   t.deepEqual(
     game.gameOverCriteria(gameState, {}),
     'self__high'

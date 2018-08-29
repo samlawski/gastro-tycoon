@@ -12,7 +12,7 @@ Deploy privacy landing page: `firebase deploy --only hosting`
 ### v1
 - Add at least one set of special cards (beginnings, lateStories, events) to the following:
   - `assistants__*`
-  - `beginnings__location` (specific ideas: `lateStories__frankenstein`, `events__competition`, `events__renovation`, `events__tent`, `events__uni__customers`, `stories__customConstruction`)
+  - `beginnings__location` (specific ideas: `lateStories__frankenstein`, `events__competition`, `events__renovation`, `events__tent`, `events__uni__customers`, `stories__customConstruction`, `events__iceCreamChildren`, `events__sickOfSoup`, `events__drunkCustomer`, `events__cheapFood`)
 - >100 add more cards!
 - >10 endings
 

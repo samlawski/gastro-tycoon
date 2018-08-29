@@ -143,7 +143,7 @@
       "text": "This former fast food restaurant has been empty for quite a while. Maybe we can take it over?",
       "responses": [
         {
-          "text": "No to fast food!",
+          "text": "Say 'No' to fast food!",
           "effect": { "self": 0, "money": -1, "staff": 0, "customers": 0 },
           "shuffle": false
         },
@@ -209,23 +209,23 @@
       ]
     },
     {
-      "text": "We should probably decide what kind of hot beverages we want to sell. How about coffee?",
+      "text": "We should sell some hot beverages. How about coffee?",
       "responses": [
         {
           "text": "Really? Everyone likes coffee. But ok. I think this will make some customers quite unhappy.",
-          "effect": { "self": 1, "money": 2, "staff": 1, "customers": -2 },
+          "effect": { "self": 1, "money": 1, "staff": 0, "customers": -2 },
           "shuffle": false
         },
         {
           "text": "Nobody can say no to coffee!",
-          "effect": { "self": -2, "money": -2, "staff": 0, "customers": 2 },
+          "effect": { "self": -1, "money": -1, "staff": 0, "customers": 2 },
           "cardsToAdd": {"beginnings__staff": {}},
           "shuffle": false
         }
       ]
     },
     {
-      "text": "Do you want to set up a stone oven to make pizza?",
+      "text": "Do you want to set up a stone oven so we can make pizza?",
       "responses": [
         {
           "text": "True. There are enough pizza places around anyway.",
@@ -234,7 +234,119 @@
         },
         {
           "text": "Pizza, Pizza, Pizza!",
-          "effect": { "self": 2, "money": -1, "staff": 0, "customers": 0 },
+          "effect": { "self": 1, "money": -1, "staff": 0, "customers": 0 },
+          "cardsToAdd": {"beginnings__staff": {}},
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "text": "Ice cream! We definitely need to sell ice cream! Say yes!",
+      "responses": [
+        {
+          "text": "Did something go wrong with you when you were a child?",
+          "effect": { "self": 0, "money": -1, "staff": -2, "customers": 0 },
+          "shuffle": false
+        },
+        {
+          "text": "We gotta get chocolote, vanilla, strawberry, but also some fun things like cookie cake or cheese dough!",
+          "effect": { "self": 1, "money": -1, "staff": 0, "customers": 1 },
+          "cardsToAdd": {"beginnings__staff": {}},
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "text": "My great grand mother gave me this excellent dubious soup recipe. I can vouch for it. Can I add it to our menu?",
+      "responses": [
+        {
+          "text": "Heartless. My great grand mother was a fabulous cook.",
+          "effect": { "self": 1, "money": 0, "staff": -1, "customers": 0 },
+          "shuffle": false
+        },
+        {
+          "text": "Our customers will love it!",
+          "effect": { "self": 0, "money": 0, "staff": 0, "customers": -2 },
+          "cardsToAdd": {"beginnings__staff": {}},
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "text": "We haven't added any alcoholic drink to our selection yet. Should we?",
+      "responses": [
+        {
+          "text": "Let's not get people drunk. Wise choice.",
+          "effect": { "self": 1, "money": -1, "staff": 1, "customers": -1 },
+          "shuffle": false
+        },
+        {
+          "text": "Nobody can say no to that! Customers will love us!",
+          "effect": { "self": 0, "money": -2, "staff": 0, "customers": 2 },
+          "cardsToAdd": {"beginnings__staff": {}},
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "text": "Let's sell some chocolate chip cookies. Shall we?",
+      "responses": [
+        {
+          "text": "You are a strange person sometimes.",
+          "effect": { "self": -1, "money": 0, "staff": 0, "customers": 0 },
+          "shuffle": false
+        },
+        {
+          "text": "Cookies! Nom nom nom!",
+          "effect": { "self": 1, "money": -1, "staff": 0, "customers": 1 },
+          "cardsToAdd": {"beginnings__staff": {}},
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "text": "Why should we bother having fancy food? Should we just get instant noodles to heat them up for our guests? Nobody will notice!",
+      "responses": [
+        {
+          "text": "Didn't think you had morals. I guess I was wrong.",
+          "effect": { "self": 1, "money": -1, "staff": 0, "customers": 0 },
+          "shuffle": false
+        },
+        {
+          "text": "Nice. I like how you think.",
+          "effect": { "self": 0, "money": 1, "staff": 0, "customers": -1 },
+          "cardsToAdd": {"beginnings__staff": {}},
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "text": "I hear salads are pretty popular these days. How about cutting up some greens and selling them for a ridiculous price?",
+      "responses": [
+        {
+          "text": "You don't have to like salad. But fine.",
+          "effect": { "self": 0, "money": 0, "staff": 0, "customers": 0 },
+          "shuffle": false
+        },
+        {
+          "text": "This healthy salad will hopefully attract some hipsters. And it's not even expensive.",
+          "effect": { "self": 0, "money": 0, "staff": 0, "customers": 1 },
+          "cardsToAdd": {"beginnings__staff": {}},
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "text": "Let's put some snack bars and chocolates on the counter. People will impulse buy them.",
+      "responses": [
+        {
+          "text": "Alright.",
+          "effect": { "self": 0, "money": -1, "staff": 0, "customers": 0 },
+          "shuffle": false
+        },
+        {
+          "text": "Perfect. I'll put them right in the middle. This way customers have to reach over them to pay.",
+          "effect": { "self": 0, "money": 1, "staff": 0, "customers": 0 },
           "cardsToAdd": {"beginnings__staff": {}},
           "shuffle": false
         }
