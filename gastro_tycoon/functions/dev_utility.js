@@ -27,12 +27,14 @@ module.exports = (() => {
     const statsNo     = categoryCards.map(card => cardStats_no(card))
 
 
-    console.log(categoryKey)
+    console.log(categoryKey, categoryCards.length, 'cards')
     console.log('Total Stats: ', sumStats(statsTotal))
     console.log('Yes Stats: ', sumStats(statsYes))
     console.log('No Stats: ', sumStats(statsNo))
     console.log('')
   })
+
+  console.log('Total cards: ', Object.values(cards).reduce((total, categoryCards) => total + categoryCards.length, 0))
 
   return {
     addStats,

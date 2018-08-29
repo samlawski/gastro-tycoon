@@ -401,6 +401,70 @@
           "shuffle": false
         }
       ]
+    },
+    {
+      "text": "A man with long black hair and a full beard walked in. His clothes are kind of run down but his face is really friendly. He is asking for a job. Are we offering it to him?",
+      "responses": [
+        {
+          "text": "He looks really sad.",
+          "effect": { "self": -1, "money": 0, "staff": 0, "customers": 0 },
+          "shuffle": false
+        },
+        {
+          "text": "He seems relieved. He isn't even asking for a lot of money. Nice.",
+          "effect": { "self": 0, "money": 0, "staff": 1, "customers": 0 },
+          "cardsToAdd": {"beginnings__staff": {}},
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "text": "A woman needs a side job while finishing her Master's degree. I'd say we offer her the job. Ok?",
+      "responses": [
+        {
+          "text": "She seemed nice. But oh well.",
+          "effect": { "self": 0, "money": 0, "staff": -1, "customers": 0 },
+          "shuffle": false
+        },
+        {
+          "text": "Her complicated schedule makes things a little more stressful. But we'll make it work!",
+          "effect": { "self": -1, "money": 0, "staff": 1, "customers": 0 },
+          "cardsToAdd": {"beginnings__staff": {}},
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "text": "A robot claims it can work more efficiently, cheaper and better than any other employee we'll ever have. Should we trust it?",
+      "responses": [
+        {
+          "text": "I agree. Machines you can talk to shouldn't be trusted.",
+          "effect": { "self": 0, "money": 0, "staff": -1, "customers": 0 },
+          "shuffle": false
+        },
+        {
+          "text": "I feel oddly empathetic with that robot. Customers will probably have to get used to it though.",
+          "effect": { "self": 1, "money": 0, "staff": 1, "customers": -1 },
+          "cardsToAdd": {"beginnings__staff": {}},
+          "shuffle": false
+        }
+      ]
+    },
+    {
+      "text": "A talking elephant with the name of Ben wants to work for us. Might be a little tight but who can say no to an elephant? Could you?",
+      "responses": [
+        {
+          "text": "That's what I thought. Now we have an elephant working for us.",
+          "effect": { "self": 1, "money": -1, "staff": 1, "customers": 1 },
+          "cardsToAdd": {"beginnings__staff": {}},
+          "shuffle": false
+        },
+        {
+          "text": "Really? You can say no to this? Fine then I guess we don't hire him.",
+          "effect": { "self": 0, "money": 0, "staff": -1, "customers": 0 },
+          "shuffle": false
+        }
+      ]
     }
   ],
   "first_customer": [

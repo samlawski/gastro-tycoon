@@ -1,6 +1,6 @@
 import test from 'ava'
 const Cards = require('../cards_loader.js')
-const Dev = require('../dev_utility.js')
+// const Dev = require('../dev_utility.js')
 
 /*
   This file contains a number of balancing tests
