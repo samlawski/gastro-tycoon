@@ -15,6 +15,7 @@ Deploy privacy landing page: `firebase deploy --only hosting`
   - `beginnings__location` (specific ideas: `lateStories__frankenstein`, `events__competition`, `events__renovation`, `events__tent`, `events__uni__customers`, `stories__customConstruction`, `events__iceCreamChildren`, `events__sickOfSoup`, `events__drunkCustomer`, `events__cheapFood`, `events__thief` (of snacks), `lateStories__staff__robot`)
 - >200 add more cards!
 - >10 endings
+- more intermediate assistants
 
 ### v2
 - Add more `beginnings__*` cards only available for higher level assistants

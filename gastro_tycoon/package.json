@@ -5,8 +5,7 @@
   "author": "sam",
   "scripts": {
     "deploy": "firebase deploy",
-    "deploy functions": "firebase deploy --only functions",
-    "test": "ava \"**/*.test.js\""
+    "deploy-functions": "firebase deploy --only functions"
   },
   "dependencies": {},
   "private": true
