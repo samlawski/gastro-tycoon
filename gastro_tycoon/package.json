@@ -1,0 +1,13 @@
+{
+  "name": "gastro_tycoon",
+  "description": "Build a successful business with the right balance.",
+  "version": "0.0.1",
+  "author": "sam",
+  "scripts": {
+    "deploy": "firebase deploy",
+    "deploy functions": "firebase deploy --only functions",
+    "test": "ava \"**/*.test.js\""
+  },
+  "dependencies": {},
+  "private": true
+}

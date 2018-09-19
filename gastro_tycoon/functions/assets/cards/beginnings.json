@@ -473,7 +473,7 @@
       "responses": [
         {
           "text": "Saving some money. Smart. Although now it looks rather empty. Not many customers were convinced to try a new place on the first day without any special deal.",
-          "effect": { "self": 1, "money": 0, "staff": 1, "customers": -1 },
+          "effect": { "self": 1, "money": 6, "staff": 1, "customers": -1 },
           "cardsToAdd": {
             "events__random": {},
             "events__random__customers": {}
@@ -482,7 +482,76 @@
         },
         {
           "text": "Such a success! A lot of people came just for the discount. We lost a little bit of money but gained lots of happy customers.",
-          "effect": { "self": -1, "money": -2, "staff": 0, "customers": 2 },
+          "effect": { "self": -1, "money": 4, "staff": 0, "customers": 2 },
+          "cardsToAdd": {
+            "events__random": {},
+            "events__random__customers": {}
+          },
+          "cardsToRemove": {"beginnings__first_customer": {}}
+        }
+      ]
+    },
+    {
+      "text": "The moment of truth! It's finally time to open our little shop. Are you ready?",
+      "responses": [
+        {
+          "text": "It's totally normal to be a little afraid when opening up for the first time. But it's time. And your first customers are lining up.",
+          "effect": { "self": -1, "money": 5, "staff": 0, "customers": 0 },
+          "cardsToAdd": {
+            "events__random": {},
+            "events__random__customers": {}
+          },
+          "cardsToRemove": {"beginnings__first_customer": {}}
+        },
+        {
+          "text": "Yea! This is going to be the best shop in town!",
+          "effect": { "self": 1, "money": 5, "staff": 0, "customers": 0 },
+          "cardsToAdd": {
+            "events__random": {},
+            "events__random__customers": {}
+          },
+          "cardsToRemove": {"beginnings__first_customer": {}}
+        }
+      ]
+    },
+    {
+      "text": "Let's open our doors. I'm curious to see who our first customers are going to be. Are you ready?",
+      "responses": [
+        {
+          "text": "No? Well. We gotta open anyway whether you like it our not.",
+          "effect": { "self": -1, "money": 5, "staff": 0, "customers": 1 },
+          "cardsToAdd": {
+            "events__random": {},
+            "events__random__customers": {}
+          },
+          "cardsToRemove": {"beginnings__first_customer": {}}
+        },
+        {
+          "text": "See! There are actual people coming in!",
+          "effect": { "self": 1, "money": 5, "staff": 0, "customers": 1 },
+          "cardsToAdd": {
+            "events__random": {},
+            "events__random__customers": {}
+          },
+          "cardsToRemove": {"beginnings__first_customer": {}}
+        }
+      ]
+    },
+    {
+      "text": "Let's turn on the sign that we are open and see what happens. What do you think?",
+      "responses": [
+        {
+          "text": "Ok. Then we'll just open without the sign.",
+          "effect": { "self": 0, "money": 4, "staff": 0, "customers": -1 },
+          "cardsToAdd": {
+            "events__random": {},
+            "events__random__customers": {}
+          },
+          "cardsToRemove": {"beginnings__first_customer": {}}
+        },
+        {
+          "text": "Nice one. I like the way this looks. Also, we probably be more visible with a sign like this.",
+          "effect": { "self": 0, "money": 5, "staff": 0, "customers": 1 },
           "cardsToAdd": {
             "events__random": {},
             "events__random__customers": {}
