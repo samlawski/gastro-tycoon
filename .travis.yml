@@ -1,0 +1,9 @@
+language: node_js
+
+install: 
+  - cd gastro_tycoon/functions
+  - npm install
+
+script: 
+  - cd gastro_tycoon/functions
+  - npm test
